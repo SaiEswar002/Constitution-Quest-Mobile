@@ -3,125 +3,151 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#f7f4ed">
-<title>Constitution Quest | Learn one idea at a time</title>
+<meta name="theme-color" content="#f4f1e9">
+<title>Constitution Quest — Study Arcade</title>
 <style>
 :root{
- --paper:#f7f4ed;--card:#fffdf8;--ink:#242b2a;--muted:#727b76;--line:#e7e2d7;
- --forest:#174d43;--forest2:#23695b;--mint:#dceee5;--coral:#e77d60;--coral-pale:#fbe6de;
- --gold:#e6b85c;--gold-pale:#fff2d6;--blue:#dfeaf4;--shadow:0 8px 28px #24352b12;
+ --bg:#f4f1e9;--surface:#fffdf8;--surface2:#ebe7dc;--ink:#202a25;--muted:#738078;
+ --line:#e1ded3;--green:#174c3e;--green2:#276c56;--mint:#dceee4;--lime:#c7ee91;
+ --orange:#f18b63;--yellow:#f3c96b;--blue:#a9c7e8;--red:#e87568;
+ --shadow:0 12px 32px rgba(37,52,42,.08);--nav:rgba(255,253,248,.94);
+ --hero-grad:linear-gradient(140deg,#174c3e,#286b55 65%,#51896c);
 }
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:ui-rounded,"Avenir Next",system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.55}
-button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-.app{max-width:760px;margin:auto;min-height:100dvh;padding:0 0 92px}
-header{padding:18px 18px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px}
-.brand{display:flex;align-items:center;gap:10px}.brandmark{width:42px;height:42px;background:var(--forest);color:#fff;border-radius:14px;display:grid;place-items:center;font-size:23px;font-weight:900}
-.brand strong{display:block;font-size:15px;letter-spacing:-.3px}.brand small{display:block;color:var(--muted);font-size:11px}
-.streak{background:var(--gold-pale);color:#775319;border:1px solid #f1dfb8;border-radius:99px;padding:7px 11px;font-size:12px;font-weight:750}
-main{padding:8px 16px 22px}
-.welcome{background:var(--forest);color:#fff;border-radius:25px;padding:22px 20px 20px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
-.welcome:after{content:"";position:absolute;width:190px;height:190px;border:1px solid #ffffff22;border-radius:50%;right:-70px;top:-85px;box-shadow:0 0 0 24px #ffffff08,0 0 0 48px #ffffff06}
-.kicker{font-size:10px;letter-spacing:1.8px;text-transform:uppercase;font-weight:850;opacity:.75}
-.welcome h1{font-size:29px;line-height:1.13;letter-spacing:-1px;margin:10px 0 8px;max-width:420px}
-.welcome p{font-size:13px;color:#d7e8e0;margin:0;max-width:430px}
-.welcome-row{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-top:20px;position:relative;z-index:1}
-.primary{border:0;background:var(--gold);color:#382b12;border-radius:13px;padding:12px 16px;font-weight:850;font-size:13px;box-shadow:0 4px 0 #b58b3e}
-.primary:active{transform:translateY(2px);box-shadow:0 2px 0 #b58b3e}
-.hero-stamp{font-size:36px;opacity:.95}
-.section-title{display:flex;justify-content:space-between;align-items:center;margin:24px 2px 11px}
-.section-title h2{font-size:17px;margin:0;letter-spacing:-.3px}.section-title span{font-size:11px;color:var(--muted)}
-.today-card{background:var(--card);border:1px solid var(--line);border-radius:19px;padding:15px;box-shadow:var(--shadow)}
-.progressline{height:8px;background:#ece9df;border-radius:20px;overflow:hidden;margin:9px 0 7px}.progressline span{height:100%;display:block;background:var(--forest2);width:0;transition:width .35s}
-.progressmeta{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-rounded,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5;transition:background .25s,color .25s}
+button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+body.dark{
+ --bg:#0c1310;--surface:#151f19;--surface2:#202c24;--ink:#edf5ee;--muted:#a0b1a5;
+ --line:#2b3b30;--green:#183d31;--green2:#7cc5a0;--mint:#203a2e;--lime:#d2f39e;
+ --orange:#f29a78;--yellow:#f3ce7b;--blue:#91b6db;--red:#f08a7d;
+ --shadow:0 14px 38px rgba(0,0,0,.28);--nav:rgba(15,23,18,.96);
+ --hero-grad:linear-gradient(145deg,#142f26,#1c4938 65%,#285a43);
+ color-scheme:dark;
+}
+.app{max-width:760px;min-height:100dvh;margin:auto;padding-bottom:calc(82px + env(safe-area-inset-bottom))}
+.topbar{height:68px;padding:0 17px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brandmark{width:39px;height:39px;border-radius:13px;background:var(--green);color:#fff;display:grid;place-items:center;font-size:21px;font-weight:900}
+.brandname{font-size:13px;font-weight:950;letter-spacing:.6px}.brandmeta{font-size:10px;color:var(--muted)}
+.iconbtn{width:39px;height:39px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:17px}
+main{padding:9px 16px 25px}
+.screen{animation:screenIn .28s ease both}
+@keyframes screenIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@keyframes titleIn{from{opacity:0;transform:translateY(12px);letter-spacing:-.9px}to{opacity:1;transform:translateY(0);letter-spacing:-.45px}}
+@keyframes cardIn{from{opacity:0;transform:scale(.975) translateY(8px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes heartPop{0%{opacity:0;transform:scale(.3)}35%{opacity:1;transform:scale(1.25)}100%{opacity:0;transform:scale(1)}}
+@keyframes progressIn{from{width:0}to{width:var(--progress)}}
+h1,h2,h3,p{margin-top:0}
+h1{animation:titleIn .45s cubic-bezier(.2,.8,.2,1) both}
+.eyebrow{font-size:10px;letter-spacing:1.7px;text-transform:uppercase;font-weight:900;color:var(--green2)}
+body.dark .eyebrow{color:var(--lime)}
+.hero{background:var(--hero-grad);border-radius:25px;padding:23px 21px;color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.hero:after{content:"";position:absolute;width:210px;height:210px;border:1px solid #ffffff24;border-radius:50%;right:-95px;top:-100px;box-shadow:0 0 0 24px #ffffff09,0 0 0 49px #ffffff07}
+.hero .eyebrow{color:#d6f0df}.hero h1{font-size:clamp(29px,8vw,39px);line-height:1.08;letter-spacing:-1.1px;margin:9px 0}
+.hero p{color:#e0eee5;font-size:13px;max-width:430px;margin:0}
+.herofoot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:18px;position:relative;z-index:1}
+.primary{border:0;background:var(--lime);color:#183324;border-radius:13px;padding:12px 16px;font-size:13px;font-weight:900;box-shadow:0 3px 0 #7f9e59;transition:transform .16s,filter .16s}
+.primary:active{transform:translateY(2px);filter:brightness(.95);box-shadow:0 1px 0 #7f9e59}
+.secondary{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:13px;padding:11px 14px;font-size:13px;font-weight:800}
+.sectionhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:23px 2px 11px}
+.sectionhead h2{font-size:17px;letter-spacing:-.35px;margin:0}.sectionhead span{font-size:11px;color:var(--muted)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:19px;padding:15px;box-shadow:var(--shadow)}
+.progressrow{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:var(--muted)}
+.progressrow b{color:var(--ink)}
+.progressbar{height:8px;background:var(--surface2);border-radius:99px;overflow:hidden;margin:10px 0 7px}
+.progressbar span{height:100%;display:block;width:var(--progress);background:linear-gradient(90deg,var(--green2),var(--lime));border-radius:99px;transition:width .5s}
 .path{display:grid;gap:9px}
-.pathitem{display:flex;align-items:center;gap:12px;text-align:left;width:100%;border:1px solid var(--line);background:var(--card);border-radius:16px;padding:12px;box-shadow:0 3px 12px #24352b08;color:var(--ink)}
-.pathitem:active{transform:scale(.99)}.pathnum{width:37px;height:37px;flex:none;border-radius:12px;background:var(--mint);color:var(--forest);display:grid;place-items:center;font-weight:900}
-.pathcopy{min-width:0;flex:1}.pathcopy b{font-size:13px;display:block;line-height:1.25}.pathcopy small{font-size:11px;color:var(--muted)}
-.pathstatus{font-size:18px;color:var(--forest)}
-.bottomnav{position:fixed;z-index:10;bottom:0;left:0;right:0;background:#fffdf8ed;backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:8px 12px calc(8px + env(safe-area-inset-bottom));display:flex;justify-content:center}
-.bottominner{width:100%;max-width:760px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px}
-.navbtn{border:0;background:transparent;color:#818982;padding:6px 2px;border-radius:12px;font-size:10px;font-weight:700;display:grid;justify-items:center;gap:2px}
-.navbtn .ico{font-size:19px;line-height:1.2}.navbtn.active{background:var(--mint);color:var(--forest)}
-/* lesson */
-.backline{display:flex;align-items:center;justify-content:space-between;margin:4px 0 14px}
-.textbtn{border:0;background:transparent;color:var(--forest);font-weight:800;padding:7px 0;font-size:13px}
-.lessonprogress{font-size:11px;color:var(--muted)}
-.lessonhead{background:var(--forest);color:white;border-radius:23px;padding:19px;margin-bottom:13px;position:relative;overflow:hidden}
-.lessonhead .kicker{color:#cce6d8}.lessonhead h1{font-size:25px;line-height:1.17;letter-spacing:-.8px;margin:7px 0}.lessonhead p{font-size:12px;color:#d8e8e0;margin:0}
-.lessonbadge{display:inline-block;margin-top:12px;padding:5px 9px;background:#ffffff1b;border-radius:99px;font-size:10px}
-.stepdots{display:flex;gap:5px;margin:15px 0}.stepdots i{height:5px;flex:1;background:#e6e1d6;border-radius:9px}.stepdots i.on{background:var(--coral)}
-.lesson-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--shadow);min-height:260px}
-.lesson-card .label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:900;color:var(--forest2)}
-.lesson-card h2{font-size:21px;line-height:1.22;margin:8px 0 12px;letter-spacing:-.5px}
-.lesson-card p{font-size:14px;color:#505b55;margin:0 0 12px}
-.analogy{background:var(--gold-pale);border:1px solid #f0dfba;border-radius:15px;padding:13px;margin:13px 0;color:#574622;font-size:13px}
-.analogy b{display:block;font-size:10px;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;color:#8a6424}
-.keyline{background:var(--mint);border-radius:13px;padding:12px 13px;color:#174d43;font-size:13px;font-weight:700;margin-top:12px}
-.lesson-actions{display:flex;gap:9px;margin-top:13px}.lesson-actions button{flex:1}
-.secondary{border:1px solid var(--line);background:#fffdf8;color:var(--forest);border-radius:13px;padding:12px;font-weight:800;font-size:13px}
-.lesson-actions .primary{font-size:13px}
-.remember{background:var(--coral-pale);border-radius:17px;padding:15px;margin-top:13px;color:#704234;font-size:13px}
-.remember b{display:block;margin-bottom:4px}
-.answerbox{border:1px dashed #c8c1b2;background:#faf8f1;border-radius:14px;padding:13px;margin-top:12px}
-.answerbox button{border:0;background:transparent;color:var(--forest);font-weight:850;padding:0}
-.answertext{display:none;margin-top:9px;color:#515a54;font-size:13px}.answerbox.open .answertext{display:block}
-.quizcard{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:17px;box-shadow:var(--shadow)}
-.quizlabel{font-size:10px;letter-spacing:1.4px;color:var(--forest2);font-weight:900}
-.quizcard h2{font-size:19px;line-height:1.3;margin:9px 0 14px}
-.opt{width:100%;text-align:left;background:#fff;border:1px solid var(--line);padding:12px;border-radius:13px;margin:5px 0;color:var(--ink);font-size:13px}
-.opt.correct{border-color:#4b9b78;background:#e5f4eb}.opt.wrong{border-color:#df8068;background:#fbe8e1}
-.explain{font-size:12px;color:var(--muted);min-height:22px;margin:10px 0}
-.flash{background:var(--forest);color:white;border-radius:22px;min-height:235px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow)}
-.flash small{color:#cce6d8;letter-spacing:1.5px;font-weight:800}.flash h2{font-size:24px;line-height:1.25;margin:15px 0}.flash p{color:#d7e8e0;font-size:13px}
-.flashback{display:none;background:var(--mint);color:var(--forest);border-radius:22px;min-height:235px;padding:22px}.flashback h2{font-size:20px}.flashback p{font-size:14px}
-.gridfacts{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.fact{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}.fact b{font-size:13px;color:var(--forest);display:block}.fact span{font-size:11px;color:var(--muted)}
-.noteitem{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:8px 0;overflow:hidden}
-.noteitem button{border:0;background:transparent;padding:13px;width:100%;text-align:left;display:flex;justify-content:space-between;gap:8px;color:var(--ink);font-weight:800;font-size:13px}
-.noteanswer{display:none;padding:0 13px 13px;color:#59645e;font-size:13px}.noteitem.open .noteanswer{display:block}
-.emptyhint{padding:18px;text-align:center;color:var(--muted);font-size:13px}
-@media(min-width:650px){main{padding:14px 25px 30px}.welcome{padding:28px}.welcome h1{font-size:36px}.path{grid-template-columns:1fr 1fr}.lessonhead h1{font-size:30px}.lesson-card{padding:24px}.bottomnav{padding-bottom:10px}}
-@media(prefers-reduced-motion:no-preference){.welcome{animation:fadeup .5s ease both}.today-card,.pathitem{animation:fadeup .4s ease both}@keyframes fadeup{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}}
-
-/* swipe-to-learn reels */
-.reel-intro{background:var(--forest);color:#fff;border-radius:20px;padding:16px;margin-bottom:12px}
-.reel-intro h2{font-size:21px;line-height:1.2;margin:5px 0}.reel-intro p{font-size:12px;color:#d7e8e0;margin:0}
-.reel-feed{height:min(68dvh,680px);min-height:430px;overflow-y:auto;scroll-snap-type:y mandatory;overscroll-behavior:contain;border-radius:22px;display:block;padding-bottom:2px}
-.reel-card{scroll-snap-align:start;min-height:min(64dvh,620px);margin:0 0 10px;border-radius:22px;padding:20px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(155deg,#174d43,#286c5a);color:white;position:relative;overflow:hidden}
-.reel-card:nth-child(3n+2){background:linear-gradient(155deg,#a85b46,#d78a68)}
-.reel-card:nth-child(3n){background:linear-gradient(155deg,#354c78,#657fa8)}
-.reel-card:after{content:"";position:absolute;width:220px;height:220px;border:1px solid #ffffff22;border-radius:50%;right:-90px;top:-80px;box-shadow:0 0 0 25px #ffffff09,0 0 0 50px #ffffff06}
-.reel-meta{font-size:10px;letter-spacing:1.4px;font-weight:900;color:#ffffffc9;position:relative;z-index:1}
-.reel-card h3{font-size:clamp(23px,6vw,34px);line-height:1.14;letter-spacing:-.8px;margin:12px 0;position:relative;z-index:1}
-.reel-card p{font-size:14px;color:#ffffffed;position:relative;z-index:1}
-.reel-answer{background:#ffffff1c;border:1px solid #ffffff40;border-radius:15px;padding:13px;margin-top:12px;position:relative;z-index:1}
-.reel-answer b{display:block;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#fff9d9;margin-bottom:5px}
-.reel-answer span{font-size:13px;color:white}
-.reel-foot{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#ffffffd6;position:relative;z-index:1;margin-top:15px}
-.reel-hint{font-size:11px;color:var(--muted);text-align:center;padding:8px}
-.exam-tabs{display:flex;gap:7px;overflow-x:auto;padding:3px 0 9px;scrollbar-width:none}
-.exam-tabs button{white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--forest);padding:9px 12px;border-radius:99px;font-size:12px;font-weight:800}
-.exam-tabs button.active{background:var(--forest);color:white;border-color:var(--forest)}
-.exam-block{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin:9px 0}
-.exam-block h3{font-size:14px;margin:0 0 7px}.exam-block p{font-size:12px;color:var(--muted);margin:0}
-.exam-block .answer{display:none;border-top:1px solid var(--line);padding-top:10px;margin-top:10px;color:#505b55;font-size:13px}
-.exam-block.open .answer{display:block}
-.exam-block button{border:0;background:transparent;padding:0;color:var(--forest);font-weight:850;font-size:12px;margin-top:9px}
-.exam-article{display:inline-flex;align-items:center;gap:5px;background:var(--mint);color:var(--forest);border-radius:8px;padding:4px 7px;font-size:10px;font-weight:900;margin:2px 4px 2px 0}
-@media(max-width:390px){.navbtn{font-size:9px}.navbtn .ico{font-size:17px}.bottominner{gap:1px}.reel-feed{height:62dvh}.reel-card{min-height:58dvh;padding:17px}}
-
+.pathitem{width:100%;display:flex;align-items:center;gap:11px;text-align:left;padding:12px;background:var(--surface);border:1px solid var(--line);border-radius:16px;color:var(--ink);transition:transform .16s,border-color .16s}
+.pathitem:active{transform:scale(.985)}
+.pathnum{width:38px;height:38px;flex:none;border-radius:12px;background:var(--mint);color:var(--green2);display:grid;place-items:center;font-weight:950}
+.pathcopy{min-width:0;flex:1}.pathcopy b{display:block;font-size:13px;line-height:1.3}.pathcopy small{font-size:10px;color:var(--muted)}
+.arrow{font-size:20px;color:var(--green2)}
+.bottomnav{position:fixed;z-index:30;bottom:0;left:0;right:0;background:var(--nav);backdrop-filter:blur(16px);border-top:1px solid var(--line);padding:7px 8px calc(7px + env(safe-area-inset-bottom))}
+.navinner{max-width:760px;margin:auto;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px}
+.navbtn{border:0;background:transparent;color:var(--muted);border-radius:13px;padding:6px 1px;display:grid;justify-items:center;gap:2px;font-size:9px;font-weight:850;transition:background .2s,color .2s}
+.navbtn .ico{font-size:19px;line-height:1.2}.navbtn.active{background:var(--mint);color:var(--green2)}
+/* Reels: one focused card, not a tiny list of cards */
+.reel-head{display:flex;align-items:center;justify-content:space-between;margin:4px 0 11px}
+.reel-head h1{font-size:21px;margin:0;letter-spacing:-.5px}
+.reel-count{font-size:11px;color:var(--muted);font-weight:800}
+.reel-stage{height:min(67dvh,690px);min-height:470px;position:relative;overflow-x:hidden;overflow-y:auto;border-radius:25px;background:#172c22;box-shadow:var(--shadow);touch-action:pan-y;overscroll-behavior:contain;user-select:text;-webkit-overflow-scrolling:touch}
+.reel-card{min-height:100%;height:auto;width:100%;position:relative;padding:22px 20px 18px;color:white;display:flex;flex-direction:column;justify-content:space-between;gap:20px;overflow:visible;isolation:isolate;animation:cardIn .26s ease both}
+.reel-card:before{content:"";position:absolute;z-index:-1;inset:0;background:var(--reelbg,linear-gradient(145deg,#174c3e,#34775b))}
+.reel-card:after{content:"";position:absolute;z-index:-1;width:270px;height:270px;border:1px solid #ffffff27;border-radius:50%;right:-120px;top:-120px;box-shadow:0 0 0 28px #ffffff0b,0 0 0 58px #ffffff08}
+.reel-card.theme-1:before{background:linear-gradient(145deg,#9a503d,#d98560)}
+.reel-card.theme-2:before{background:linear-gradient(145deg,#354c78,#647fa8)}
+.reel-card.theme-3:before{background:linear-gradient(145deg,#594477,#9470a7)}
+.reel-card.theme-4:before{background:linear-gradient(145deg,#355e65,#559b91)}
+.reel-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.reel-tag{font-size:9px;letter-spacing:1.3px;font-weight:950;color:#ffffffcf}
+.reel-progress{height:4px;background:#ffffff35;border-radius:99px;margin-top:13px;overflow:hidden}
+.reel-progress span{height:100%;display:block;background:#fff;width:var(--p)}
+.reel-center{padding:15px 0;max-height:none;overflow:visible;scrollbar-width:none}
+.reel-center::-webkit-scrollbar{display:none}
+.reel-kicker{font-size:10px;letter-spacing:1.7px;text-transform:uppercase;color:#ffffffbb;font-weight:900}
+.reel-question{font-size:clamp(26px,7vw,36px);line-height:1.12;letter-spacing:-.9px;margin:12px 0 13px;animation:titleIn .35s ease both}
+.reel-prompt{font-size:13px;color:#ffffffd6;margin:0}
+.reveal-answer{margin-top:17px;border:1px solid #ffffff62;background:#ffffff18;color:#fff;border-radius:15px;padding:13px 14px;text-align:left;width:100%;font-weight:850;font-size:13px;backdrop-filter:blur(8px)}
+.answer-content{display:none;margin-top:12px;animation:screenIn .25s ease both}
+.answer-content.show{display:block}
+.answer-content .answer-label{font-size:9px;letter-spacing:1.5px;font-weight:950;color:#fff4c9;text-transform:uppercase}
+.answer-content p{font-size:14px;line-height:1.55;color:#fff;margin:6px 0 13px}
+.example-box{border-left:3px solid #fff1a9;padding:8px 0 8px 12px;color:#fff;font-size:12px}
+.reel-bottom{display:flex;align-items:center;justify-content:space-between;gap:9px}
+.reel-cue{font-size:10px;color:#ffffffcf;max-width:65%}
+.reel-actions{display:flex;gap:7px}
+.reel-action{border:1px solid #ffffff70;background:#ffffff1d;color:#fff;border-radius:99px;padding:9px 11px;font-size:11px;font-weight:900;backdrop-filter:blur(8px)}
+.reel-action.saved{background:#fff;color:#174c3e}
+.reel-heart{position:absolute;z-index:8;inset:0;display:grid;place-items:center;font-size:88px;opacity:0;pointer-events:none;text-shadow:0 5px 25px #0005}
+.reel-heart.pop{animation:heartPop .7s ease}
+.reel-controls{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px}
+.reel-controls button{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:12px;padding:9px 13px;font-size:12px;font-weight:850}
+.reel-instruction{text-align:center;font-size:10px;color:var(--muted);margin:9px 0 0}
+.saved-empty{text-align:center;padding:35px 15px;color:var(--muted);background:var(--surface);border-radius:18px;border:1px dashed var(--line)}
+/* Lesson flow */
+.backrow{display:flex;align-items:center;justify-content:space-between;margin:2px 0 12px}
+.textbtn{border:0;background:transparent;color:var(--green2);font-size:12px;font-weight:900;padding:8px 0}
+.lessonhero{background:var(--hero-grad);color:#fff;border-radius:21px;padding:18px;margin-bottom:11px}
+.lessonhero .eyebrow{color:#d8f0df}.lessonhero h1{font-size:24px;line-height:1.15;margin:7px 0}.lessonhero p{font-size:12px;color:#dfede3;margin:0}
+.dots{display:flex;gap:4px;margin:12px 0}.dots i{height:5px;flex:1;border-radius:9px;background:var(--surface2)}.dots i.on{background:var(--orange)}
+.lessonpanel{background:var(--surface);border:1px solid var(--line);border-radius:19px;padding:17px;box-shadow:var(--shadow)}
+.lessonpanel h2{font-size:21px;line-height:1.2;margin:7px 0 11px}.lessonpanel p{font-size:13px;color:var(--muted);margin:0 0 10px}
+.simplebox{background:var(--surface2);border-radius:14px;padding:12px;margin-top:12px;font-size:12px;color:var(--ink)}
+.keybox{background:var(--mint);color:var(--green2);border-radius:13px;padding:11px;margin-top:10px;font-size:12px;font-weight:850}
+.actionrow{display:flex;gap:8px;margin-top:12px}.actionrow>*{flex:1}
+.howto{margin-top:12px;background:var(--surface2);border-radius:15px;padding:13px;font-size:11px;color:var(--muted)}
+/* Exam and revision */
+.tabs{display:flex;gap:6px;overflow:auto;padding:2px 0 9px;scrollbar-width:none}
+.tabs button{white-space:nowrap;border:1px solid var(--line);background:var(--surface);color:var(--green2);border-radius:99px;padding:8px 11px;font-size:11px;font-weight:900}
+.tabs button.active{background:var(--green);color:#fff}
+.qa{background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:13px;margin:8px 0}
+.qa h3{font-size:13px;margin:0 0 4px}.qa small{font-size:10px;color:var(--muted)}
+.qa button{border:0;background:transparent;color:var(--green2);font-size:11px;font-weight:900;padding:9px 0 0}
+.qa-answer{display:none;border-top:1px solid var(--line);margin-top:9px;padding-top:9px;color:var(--muted);font-size:12px}
+.qa.open .qa-answer{display:block}
+.articlegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.article{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:11px}
+.article b{font-size:12px;color:var(--green2);display:block}.article span{font-size:10px;color:var(--muted)}
+@media(min-width:620px){main{padding:14px 24px 28px}.hero{padding:29px}.path{grid-template-columns:1fr 1fr}.reel-stage{height:650px;max-width:520px;margin:auto}.reel-head{max-width:520px;margin:5px auto 12px}.reel-controls,.reel-instruction{max-width:520px;margin-left:auto;margin-right:auto}}
+@media(max-width:380px){.topbar{height:60px}.reel-stage{height:63dvh;min-height:430px}.reel-card{padding:17px 16px}.reel-question{font-size:25px}.navbtn{font-size:8px}.navbtn .ico{font-size:17px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
 <div class="app">
-<header><div class="brand"><div class="brandmark">§</div><div><strong>CONSTITUTION QUEST</strong><small>Semester II · Learn with a plan</small></div></div><div class="streak">✦ YOUR STUDY SPACE</div></header>
-<main id="appmain"></main>
+<header class="topbar">
+ <div class="brand"><div class="brandmark">§</div><div><div class="brandname">CONSTITUTION QUEST</div><div class="brandmeta">SEMESTER II · STUDY ARCADE</div></div></div>
+ <button class="iconbtn" id="themeBtn" aria-label="Toggle theme">☾</button>
+</header>
+<main id="main"></main>
 </div>
-<nav class="bottomnav"><div class="bottominner">
+<nav class="bottomnav"><div class="navinner">
 <button class="navbtn active" data-tab="home"><span class="ico">⌂</span>Home</button>
 <button class="navbtn" data-tab="reels"><span class="ico">▣</span>Reels</button>
 <button class="navbtn" data-tab="learn"><span class="ico">◉</span>Learn</button>
 <button class="navbtn" data-tab="exam"><span class="ico">✎</span>Exam</button>
-<button class="navbtn" data-tab="revise"><span class="ico">✧</span>Revise</button>
+<button class="navbtn" data-tab="saved"><span class="ico">♡</span>Saved</button>
 </div></nav>
 <script>
 const topics = [
@@ -256,115 +282,141 @@ const shortNotes=[
 ["Electoral Reforms","Changes to improve fairness, transparency, efficiency and credibility of elections, including action against corruption, criminalisation and misuse of money power."],
 ["Model Code of Conduct","ECI guidelines for parties, candidates and governments to ensure free and fair elections. Comes into effect when the election schedule is announced and applies according to ECI directions and relevant law."]
 ];
-let page="home",topicIndex=0,partIndex=0,done=new Set(),quizPos=0,quizAnswered=false,flashPos=0,flashBack=false;
-const root=document.querySelector("#appmain");
-const $=s=>document.querySelector(s);
-function persist(){localStorage.setItem("cqDone",JSON.stringify([...done]))}
-try{done=new Set(JSON.parse(localStorage.getItem("cqDone")||"[]"))}catch(e){}
-function setTab(t){page=t;document.querySelectorAll(".navbtn").forEach(b=>b.classList.toggle("active",b.dataset.tab===t));if(t==="home")home();if(t==="learn")lessonIntro();if(t==="reels")reels();if(t==="exam")examHub("long");if(t==="revise")revision()}
-document.querySelectorAll(".navbtn").forEach(b=>b.onclick=()=>setTab(b.dataset.tab));
-function progress(){return Math.round(done.size/topics.length*100)}
-function home(){page="home";let next=topics.findIndex((t,i)=>!done.has(i));if(next<0)next=0;
-root.innerHTML=`<section class="welcome"><div class="kicker">A LITTLE EVERY DAY ADDS UP</div><h1>Understand it.<br>Remember it.<br>Write it in the exam.</h1><p>Don't try to memorise all 12 pages at once. We'll turn each topic into small, easy lessons.</p><div class="welcome-row"><button class="primary" id="start">Start today's lesson →</button><div class="hero-stamp">📖</div></div></section>
-<div class="section-title"><h2>Your progress</h2><span>${done.size}/10 topics</span></div>
-<div class="today-card"><div class="progressmeta"><b>${progress()}% of long answers covered</b><span>Keep going</span></div><div class="progressline"><span style="width:${progress()}%"></span></div><div class="progressmeta"><span>Each topic takes a few short steps</span><span>🎯</span></div></div>
-<div class="section-title"><h2>Your learning path</h2><span>Tap any topic</span></div><div class="path">${topics.map((t,i)=>`<button class="pathitem" data-open="${i}"><span class="pathnum">${done.has(i)?"✓":String(i+1).padStart(2,"0")}</span><span class="pathcopy"><b>${t.title}</b><small>${t.sections.length} small ideas · Learn + test</small></span><span class="pathstatus">${done.has(i)?"✓":"›"}</span></button>`).join("")}</div>`;
-$("#start").onclick=()=>openTopic(next);document.querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>openTopic(+b.dataset.open))}
-function openTopic(i){topicIndex=i;partIndex=0;quizPos=0;quizAnswered=false;page="learn";document.querySelectorAll(".navbtn").forEach(b=>b.classList.toggle("active",b.dataset.tab==="learn"));lesson()}
-function lessonIntro(){openTopic(topics.findIndex((t,i)=>!done.has(i))<0?0:topics.findIndex((t,i)=>!done.has(i)))}
-function lesson(){let t=topics[topicIndex],s=t.sections[partIndex],pct=Math.round((partIndex/t.sections.length)*100);
-root.innerHTML=`<div class="backline"><button class="textbtn" id="tohome">← My study path</button><span class="lessonprogress">TOPIC ${topicIndex+1} OF 10</span></div>
-<section class="lessonhead"><div class="kicker">YOUR MINI LESSON</div><h1>${t.title}</h1><p>${t.intro}</p><span class="lessonbadge">⏱ 5–8 minute learning session</span></section>
-<div class="stepdots">${t.sections.map((x,i)=>`<i class="${i<=partIndex?"on":""}"></i>`).join("")}</div>
-<section class="lesson-card"><div class="label">STEP ${partIndex+1} · ${t.sections.length} IDEAS</div><h2>${s[0]}</h2><p>${s[1]}</p>
-<div class="analogy"><b>💡 Make it simple</b>${analogy(t,partIndex)}</div>
-<div class="keyline">🔑 Remember this: ${memoryLine(t,partIndex)}</div>
-<div class="answerbox" id="writebox"><button id="showcheck">＋ Check what you should remember</button><div class="answertext">${s[0]} — ${s[1]}</div></div>
-</section>
-<div class="lesson-actions"><button class="secondary" id="prev" ${partIndex===0?"disabled":""}>← Back</button><button class="primary" id="next">${partIndex===t.sections.length-1?"Finish lesson ✓":"I understand · Next →"}</button></div>
-<div class="remember"><b>🧠 How to study this screen</b>1. Read the heading and explanation slowly.<br>2. Understand the simple example.<br>3. Look away and say the key point in your own words.<br>4. Open “Check what you should remember” to compare.</div>`;
-$("#tohome").onclick=home;$("#prev").onclick=()=>{if(partIndex>0){partIndex--;lesson()}};$("#next").onclick=()=>{if(partIndex<t.sections.length-1){partIndex++;lesson()}else{finishLesson()}};$("#showcheck").onclick=()=>$("#writebox").classList.toggle("open")}
-function analogy(t,i){let title=t.title.toLowerCase();if(title.includes("chief minister"))return ["Think of a team captain. The captain leads the team, assigns roles and makes sure everyone works towards the same goal.","Think of the CM and Governor as two constitutional roles: the elected leader advises and shares information with the constitutional head.","Group the Governor's work into four drawers: administration, law-making, money matters and limited mercy powers.","The court system is like a safety net: it protects rights, checks power and helps people seek justice.","The Supreme Court is the final national-level court for the kinds of cases listed in the Constitution.","A High Court is the top court for its state or shared territory arrangement.","The Election Commission is the referee that helps keep the election process fair.","Electoral reforms are upgrades to the rules of a game so every player gets a fair chance.","Money power tilts the playing field; intimidation makes voters afraid. Both weaken a fair contest.","An election is a journey with checkpoints. Each stage must happen in order."][topicIndex]||"Connect this idea to the main purpose of the topic.";
-return title.includes("governor")?"Imagine a state has a constitutional chairperson and an elected team leader. Their roles are different, but they must work within the same rulebook.":title.includes("judiciary")||title.includes("high court")||title.includes("supreme court")?"Imagine a referee who checks whether everyone, even powerful people, follows the rulebook. Courts protect rights and check unlawful actions.":title.includes("election")||title.includes("money power")?"Think of an election as a fair sports match. The rules, referee, players and scorekeeping must all be fair.":"Break the idea into its purpose, the people involved and what happens next."}
-function memoryLine(t,i){let s=t.sections[i][0];return s.split("—")[0].split(":")[0]+" = "+(t.sections[i][1].split(".")[0])}
-function finishLesson(){done.add(topicIndex);persist();root.innerHTML=`<section class="welcome"><div class="kicker">MINI LESSON COMPLETE</div><h1>Nice work. One topic clearer. 🎉</h1><p>You have completed the learning steps for ${topics[topicIndex].title}. Now test what stayed in your memory.</p><div class="welcome-row"><button class="primary" id="test">Take the 2-question check →</button><div class="hero-stamp">🌱</div></div></section><div class="section-title"><h2>What you just did</h2></div><div class="today-card"><b>✓ Read the explanation</b><p style="font-size:13px;color:var(--muted)">✓ Connected it to a simple example<br>✓ Practised recalling the key point<br>✓ Finished ${done.size} of 10 topics</p></div>`;$("#test").onclick=()=>{quizPos=0;quizAnswered=false;quizPage()}}
-function quizPage(){let qs=topics[topicIndex].quiz,q=qs[quizPos%qs.length];root.innerHTML=`<div class="backline"><button class="textbtn" id="backlesson">← Topic complete</button><span class="lessonprogress">QUICK MEMORY CHECK</span></div><section class="quizcard"><div class="quizlabel">QUESTION ${quizPos+1} OF ${qs.length}</div><h2>${q[0]}</h2><div id="opts">${q[1].map((o,i)=>`<button class="opt" data-o="${i}">${String.fromCharCode(65+i)} · ${o}</button>`).join("")}</div><div class="explain" id="explain">Choose the answer you remember.</div><button class="primary" style="width:100%" id="continue" disabled>${quizPos===qs.length-1?"Back to learning path":"Next question →"}</button></section>`;$("#backlesson").onclick=home;document.querySelectorAll("[data-o]").forEach(b=>b.onclick=()=>{if(quizAnswered)return;quizAnswered=true;let n=+b.dataset.o,ok=n===q[2];b.classList.add(ok?"correct":"wrong");if(!ok)document.querySelector(`[data-o="${q[2]}"]`).classList.add("correct");$("#explain").textContent=(ok?"Correct! ":"Remember: ")+q[3];$("#continue").disabled=false});$("#continue").onclick=()=>{if(quizPos<qs.length-1){quizPos++;quizAnswered=false;quizPage()}else{root.innerHTML=`<section class="welcome"><div class="kicker">RECALL PRACTISED</div><h1>That's how learning becomes memory.</h1><p>Return to this topic later and try recalling the points without looking.</p><div class="welcome-row"><button class="primary" id="homeagain">Back to my path →</button><span class="hero-stamp">✨</span></div></section>`;$("#homeagain").onclick=home}}}
-function practice(){root.innerHTML=`<div class="section-title"><h2>Practice, don't just reread.</h2><span>Small recall wins</span></div><p style="color:var(--muted);font-size:13px">Use these after learning a topic. Try answering in your head before opening each answer.</p><div class="section-title"><h2>Short notes</h2><span>12 quick answers</span></div>${shortNotes.map((n,i)=>`<div class="noteitem"><button>${i+1}. ${n[0]} <span>＋</span></button><div class="noteanswer">${n[1]}</div></div>`).join("")}<div class="section-title"><h2>Topic memory check</h2><span>Pick a topic</span></div><div class="path">${topics.map((t,i)=>`<button class="pathitem" data-q="${i}"><span class="pathnum">${i+1}</span><span class="pathcopy"><b>${t.title}</b><small>2 quick questions</small></span><span class="pathstatus">›</span></button>`).join("")}</div>`;document.querySelectorAll(".noteitem button").forEach(b=>b.onclick=()=>b.parentElement.classList.toggle("open"));document.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{topicIndex=+b.dataset.q;quizPos=0;quizAnswered=false;quizPage()})}
-function revision(){root.innerHTML=`<div class="section-title"><h2>Quick revision map</h2><span>Before the exam</span></div><p style="font-size:13px;color:var(--muted)">Revise the big idea first. Then recall the detail from memory.</p><div class="section-title"><h2>10 long-answer topics</h2></div>${topics.map((t,i)=>`<div class="noteitem"><button>${String(i+1).padStart(2,"0")} · ${t.title}<span>＋</span></button><div class="noteanswer">${t.hook}<br><br><b>Conclusion:</b> ${t.summary}</div></div>`).join("")}<div class="section-title"><h2>Important Articles</h2><span>From your notes</span></div><div class="gridfacts">${[["153","Governor — state head"],["155","Appointment of Governor"],["161","Clemency power"],["163","Aid and advice"],["164","Appointment of CM"],["167","CM communicates with Governor"],["213","Governor's ordinances"],["217","High Court judge appointment"],["214","High Court"],["226","High Court writs"],["227","High Court supervision"],["235","Subordinate judiciary control"],["124","Supreme Court"],["129","Supreme Court Court of Record"],["131","Original jurisdiction"],["137","Review power"],["142","Complete justice"],["143","Advisory jurisdiction"],["32","Supreme Court writs"],["324","Election Commission"]].map(a=>`<div class="fact"><b>Article ${a[0]}</b><span>${a[1]}</span></div>`).join("")}</div>`;document.querySelectorAll(".noteitem button").forEach(b=>b.onclick=()=>b.parentElement.classList.toggle("open"))}
-
-const articleNotes=[
+const $=s=>document.querySelector(s), main=$("#main");
+let tab="home",topicIndex=0,stepIndex=0,done=new Set(),saved=new Set(),reelIndex=0,showAnswer=false,quizIndex=0,quizAnswered=false,examTab="long";
+try{done=new Set(JSON.parse(localStorage.getItem("cq6Done")||"[]"))}catch(e){}
+try{saved=new Set(JSON.parse(localStorage.getItem("cq6Saved")||"[]"))}catch(e){}
+try{if(localStorage.getItem("cq6Dark")==="1")document.body.classList.add("dark")}catch(e){}
+function store(){try{localStorage.setItem("cq6Done",JSON.stringify([...done]));localStorage.setItem("cq6Saved",JSON.stringify([...saved]))}catch(e){}}
+function setActive(){document.querySelectorAll(".navbtn").forEach(b=>b.classList.toggle("active",b.dataset.tab===tab))}
+function go(t){tab=t;setActive();if(t==="home")home();if(t==="reels")reels();if(t==="learn")startLearn();if(t==="exam")exam("long");if(t==="saved")savedPage()}
+document.querySelectorAll(".navbtn").forEach(b=>b.addEventListener("click",()=>go(b.dataset.tab)));
+$("#themeBtn").onclick=()=>{document.body.classList.toggle("dark");try{localStorage.setItem("cq6Dark",document.body.classList.contains("dark")?"1":"0")}catch(e){}$("#themeBtn").textContent=document.body.classList.contains("dark")?"☀":"☾"};
+$("#themeBtn").textContent=document.body.classList.contains("dark")?"☀":"☾";
+function home(){
+ tab="home";setActive();let next=topics.findIndex((t,i)=>!done.has(i));if(next<0)next=0;
+ main.innerHTML=`<div class="screen">
+ <section class="hero"><div class="eyebrow">YOUR CONSTITUTION QUEST STARTS HERE</div><h1>Small lessons.<br>Big exam confidence.</h1><p>Learn one idea, understand the example, then prove you remember it. No more staring at 12 pages at once.</p><div class="herofoot"><button class="primary" id="continue">Continue learning →</button><span style="font-size:32px">🌱</span></div></section>
+ <div class="sectionhead"><h2>Your progress</h2><span>${done.size} / 10 topics</span></div>
+ <section class="panel"><div class="progressrow"><b>${Math.round(done.size/10*100)}% long answers covered</b><span>One step at a time</span></div><div class="progressbar"><span style="--progress:${done.size*10}%"></span></div><div class="progressrow"><span>${saved.size} saved learning cards</span><span>✦ Keep your streak alive</span></div></section>
+ <div class="sectionhead"><h2>Choose your next topic</h2><span>10 topics</span></div><div class="path">${topics.map((t,i)=>`<button class="pathitem" data-topic="${i}"><span class="pathnum">${done.has(i)?"✓":String(i+1).padStart(2,"0")}</span><span class="pathcopy"><b>${t.title}</b><small>${t.sections.length} bite-size concepts · Learn + test</small></span><span class="arrow">›</span></button>`).join("")}</div>
+ </div>`;
+ $("#continue").onclick=()=>openTopic(next);document.querySelectorAll("[data-topic]").forEach(b=>b.onclick=()=>openTopic(+b.dataset.topic));
+}
+function openTopic(i){topicIndex=i;stepIndex=0;tab="learn";setActive();lesson()}
+function startLearn(){let n=topics.findIndex((t,i)=>!done.has(i));openTopic(n<0?0:n)}
+function analogy(i){return [
+ "Imagine the Chief Minister as a team captain: leading the team, assigning responsibilities and coordinating everyone.",
+ "Think of two constitutional roles working from the same rulebook: the Governor is the constitutional head and the CM leads the elected government.",
+ "Imagine four labelled drawers: Executive, Legislative, Financial and Judicial. Put each Governor power in its correct drawer.",
+ "Think of the judiciary as a referee and safety net: it checks unlawful actions and protects people's rights.",
+ "The Supreme Court is the highest judicial authority, with different kinds of jurisdiction for different disputes.",
+ "A High Court is the highest court at state level and also supervises courts below it.",
+ "The Election Commission is like the referee of an election: it oversees the rules and process.",
+ "Electoral reforms are upgrades to the election rules so the contest becomes fairer and more transparent.",
+ "Imagine a race where one person uses unfair money advantages and another uses threats. Both damage fair competition.",
+ "An election is a journey with eight checkpoints. Every stage has to happen in the correct order."
+][i]}
+function lesson(){
+ const t=topics[topicIndex],s=t.sections[stepIndex],pct=Math.round((stepIndex+1)/t.sections.length*100);
+ main.innerHTML=`<div class="screen"><div class="backrow"><button class="textbtn" id="homeback">← Study path</button><span class="reel-count">TOPIC ${topicIndex+1} / 10</span></div>
+ <section class="lessonhero"><div class="eyebrow">LEARN · ONE IDEA AT A TIME</div><h1>${t.title}</h1><p>${t.intro}</p></section>
+ <div class="dots">${t.sections.map((x,i)=>`<i class="${i<=stepIndex?"on":""}"></i>`).join("")}</div>
+ <section class="lessonpanel"><div class="eyebrow">CONCEPT ${stepIndex+1} OF ${t.sections.length}</div><h2>${s[0]}</h2><p>${s[1]}</p>
+ <div class="simplebox"><b>💡 Picture it:</b><br>${analogy(topicIndex)}</div>
+ <div class="keybox">🔑 Remember: ${s[0].split("—")[0]} → ${s[1].split(".")[0]}</div>
+ </section>
+ <div class="actionrow"><button class="secondary" id="prev" ${stepIndex===0?"disabled":""}>← Back</button><button class="primary" id="next">${stepIndex===t.sections.length-1?"Finish topic ✓":"Got it · Next →"}</button></div>
+ <div class="howto"><b>Study move:</b> Look away from the screen and explain this idea in your own words. If you can explain it simply, you understand it.</div></div>`;
+ $("#homeback").onclick=home;$("#prev").onclick=()=>{if(stepIndex>0){stepIndex--;lesson()}};$("#next").onclick=()=>{if(stepIndex<t.sections.length-1){stepIndex++;lesson()}else{done.add(topicIndex);store();completeTopic()}};
+}
+function completeTopic(){main.innerHTML=`<div class="screen"><section class="hero"><div class="eyebrow">TOPIC COMPLETE ✦</div><h1>Look at you. One topic stronger.</h1><p>Now lock it into memory with two quick questions. Don't worry about mistakes — they show you what to revise.</p><div class="herofoot"><button class="primary" id="quizgo">Take the quick check →</button><span style="font-size:32px">🏆</span></div></section><div class="sectionhead"><h2>Your progress</h2><span>${done.size}/10</span></div><div class="panel">You have completed the learning steps for <b>${topics[topicIndex].title}</b>.</div></div>`;$("#quizgo").onclick=()=>{quizIndex=0;quizAnswered=false;quiz()}}
+function quiz(){let qs=topics[topicIndex].quiz,q=qs[quizIndex%qs.length];main.innerHTML=`<div class="screen"><div class="backrow"><button class="textbtn" id="quizback">← Study path</button><span class="reel-count">QUESTION ${quizIndex+1} / ${qs.length}</span></div><section class="panel"><div class="eyebrow">MEMORY CHECK</div><h2 style="font-size:21px;margin:9px 0 15px">${q[0]}</h2><div id="options">${q[1].map((o,i)=>`<button class="pathitem" data-option="${i}" style="margin:6px 0;width:100%"><span class="pathnum">${String.fromCharCode(65+i)}</span><span class="pathcopy"><b>${o}</b></span></button>`).join("")}</div><p id="why" style="font-size:12px;color:var(--muted);margin-top:12px">Choose your answer. You'll get an explanation.</p><button class="primary" id="quiznext" disabled style="width:100%">${quizIndex===qs.length-1?"Finish check":"Next question →"}</button></section></div>`;
+ $("#quizback").onclick=home;document.querySelectorAll("[data-option]").forEach(b=>b.onclick=()=>{if(quizAnswered)return;quizAnswered=true;let n=+b.dataset.option,ok=n===q[2];b.style.borderColor=ok?"#55ad7b":"#df7968";b.style.background=ok?"var(--mint)":"var(--surface2)";if(!ok){let correct=$(`[data-option="${q[2]}"]`);correct.style.borderColor="#55ad7b";correct.style.background="var(--mint)"}$("#why").textContent=(ok?"Correct! ":"Not quite. ")+q[3];$("#quiznext").disabled=false});
+ $("#quiznext").onclick=()=>{if(quizIndex<qs.length-1){quizIndex++;quizAnswered=false;quiz()}else{home()}};
+}
+function reelData(){return topics.flatMap((t,ti)=>t.sections.map((s,si)=>({ti,si,topic:t.title,heading:s[0],answer:s[1],question:reelQuestion(s[0]),example:analogy(ti),cue:t.hook})))}
+function reelQuestion(h){return ({ "Appointment":"Who appoints the Chief Minister?","Qualifications":"What qualifications must a Chief Minister meet?","Executive powers":"What does the executive role involve?","Selection of Ministers":"Who recommends and allocates ministerial portfolios?","Legislative powers":"How does the Chief Minister work with the Legislature?","Financial powers":"What is the CM's financial role?","Advisory role & coordination":"How does the CM coordinate the state government?","Aid and advice — Article 163":"Who advises the Governor?","Information sharing — Article 167":"What information does the CM share with the Governor?","Writ jurisdiction — Article 32":"What is the Supreme Court's writ power?","Writ jurisdiction — Article 226":"What can a High Court do under Article 226?","Model Code of Conduct":"What is the Model Code of Conduct for?","Voter registration":"Who can register to vote?","Declaration of results":"When is a candidate declared elected?"})[h]||`What should you remember about ${h.toLowerCase()}?`}
+function reels(){
+ tab="reels";setActive();const cards=reelData();if(reelIndex>=cards.length)reelIndex=0;
+ const c=cards[reelIndex],isSaved=saved.has(reelIndex);
+ main.innerHTML=`<div class="screen"><div class="reel-head"><h1>Learn in the flow ⚡</h1><span class="reel-count">${reelIndex+1} / ${cards.length}</span></div>
+ <section class="reel-stage" id="reelStage"><article class="reel-card theme-${reelIndex%5}" id="reelCard">
+ <div class="reel-heart" id="heart">♥</div>
+ <div><div class="reel-top"><span class="reel-tag">TOPIC ${c.ti+1} · QUICK CONCEPT</span><span class="reel-tag">${c.si+1}/${topics[c.ti].sections.length}</span></div><div class="reel-progress"><span style="--p:${(reelIndex+1)/cards.length*100}%"></span></div></div>
+ <div class="reel-center"><div class="reel-kicker">STOP THE SCROLL · THINK FIRST</div><h2 class="reel-question">${c.question}</h2><p class="reel-prompt">Try to answer in your head before revealing it.</p>
+ <button class="reveal-answer" id="reveal">${showAnswer?"Hide answer":"Tap to reveal answer ↓"}</button>
+ <div class="answer-content ${showAnswer?"show":""}" id="answer"><div class="answer-label">THE ANSWER</div><p>${c.answer}</p><div class="example-box"><b>REAL-LIFE CONNECTION</b><br>${c.example}</div></div></div>
+ <div class="reel-bottom"><span class="reel-cue">🧠 ${c.cue}</span><div class="reel-actions"><button class="reel-action ${isSaved?"saved":""}" id="saveReel">${isSaved?"✓ Saved":"♡ Save"}</button></div></div>
+ </article></section>
+ <div class="reel-controls"><button id="prevReel">← Previous</button><button id="nextReel">Next idea ↑</button></div>
+ <p class="reel-instruction">Scroll inside the card to read the full answer and example. Double-tap the card to save it, or use Save. Use Next idea to move on.</p></div>`;
+ $("#reveal").onclick=()=>{showAnswer=!showAnswer;const ans=$("#answer");ans.classList.toggle("show",showAnswer);$("#reveal").textContent=showAnswer?"Hide answer":"Tap to reveal answer ↓";};
+ $("#saveReel").onclick=()=>toggleSave(reelIndex);
+ $("#prevReel").onclick=()=>moveReel(-1);$("#nextReel").onclick=()=>moveReel(1);
+ // Double-tap saves only when the finger/mouse stays still.
+ // Vertical movement is reserved for reading/scrolling the answer, never changing reels.
+ let tapStart=null,lastTapAt=0;
+ const card=$("#reelCard");
+ card.addEventListener("pointerdown",e=>{
+   if(e.target.closest("button")){tapStart=null;return}
+   tapStart={x:e.clientX,y:e.clientY,id:e.pointerId};
+ },{passive:true});
+ card.addEventListener("pointerup",e=>{
+   if(!tapStart||e.target.closest("button")){tapStart=null;return}
+   const dx=e.clientX-tapStart.x,dy=e.clientY-tapStart.y;
+   tapStart=null;
+   if(Math.hypot(dx,dy)>12)return;
+   const now=Date.now();
+   if(now-lastTapAt>0&&now-lastTapAt<360){toggleSave(reelIndex);lastTapAt=0}
+   else{lastTapAt=now}
+ },{passive:true});
+ card.addEventListener("pointercancel",()=>{tapStart=null;lastTapAt=0},{passive:true});
+}
+function moveReel(d){const len=reelData().length;reelIndex=(reelIndex+d+len)%len;showAnswer=false;reels()}
+function toggleSave(i){
+ const wasSaved=saved.has(i);
+ if(wasSaved)saved.delete(i);else saved.add(i);
+ store();
+ const h=$("#heart");
+ if(h&&!wasSaved){h.classList.remove("pop");void h.offsetWidth;h.classList.add("pop")}
+ const b=$("#saveReel");
+ if(b){b.classList.toggle("saved",saved.has(i));b.textContent=saved.has(i)?"✓ Saved":"♡ Save"}
+}
+function savedPage(){tab="saved";setActive();const cards=reelData(),items=[...saved].filter(i=>cards[i]);main.innerHTML=`<div class="screen"><div class="sectionhead"><h2>Your saved concepts ♡</h2><span>${items.length} saved</span></div><p style="font-size:12px;color:var(--muted)">Cards you save in Reels stay here on this browser. Tap one to continue learning from it.</p>${items.length?items.map(i=>`<button class="pathitem" data-saved="${i}" style="width:100%;margin:5px 0"><span class="pathnum">♡</span><span class="pathcopy"><b>${cards[i].question}</b><small>${cards[i].topic} · ${cards[i].heading}</small></span><span class="arrow">›</span></button>`).join(""):`<div class="saved-empty"><div style="font-size:35px">♡</div><b>No saved cards yet</b><p>Open Reels and save a concept you want to remember.</p><button class="primary" id="goReels">Explore Reels</button></div>`}</div>`;
+ $("#goReels")?.addEventListener("click",()=>go("reels"));document.querySelectorAll("[data-saved]").forEach(b=>b.onclick=()=>{reelIndex=+b.dataset.saved;showAnswer=true;go("reels")});
+}
+function exam(which="long"){tab="exam";examTab=which;setActive();main.innerHTML=`<div class="screen"><div class="sectionhead"><h2>Exam preparation</h2><span>From your PDF</span></div><p style="font-size:12px;color:var(--muted)">Use this section to prepare answers, revise key topics and understand the Articles mentioned in your notes.</p><div class="tabs"><button data-exam="long" class="${which==="long"?"active":""}">Important Q&A</button><button data-exam="short" class="${which==="short"?"active":""}">Short notes</button><button data-exam="topics" class="${which==="topics"?"active":""}">Topics</button><button data-exam="articles" class="${which==="articles"?"active":""}">Articles</button></div><div id="examBody"></div></div>`;
+ document.querySelectorAll("[data-exam]").forEach(b=>b.onclick=()=>exam(b.dataset.exam));let box=$("#examBody");
+ if(which==="long")box.innerHTML=topics.map((t,i)=>`<div class="qa"><h3>${i+1}. ${t.title}</h3><small>Long answer · ${t.sections.length} key points</small><br><button>＋ Show answer outline</button><div class="qa-answer"><b>Introduction</b><p>${t.intro}</p><b>Main points</b><ol>${t.sections.map(s=>`<li><b>${s[0]}:</b> ${s[1]}</li>`).join("")}</ol><b>Conclusion</b><p>${t.summary}</p></div></div>`).join("");
+ else if(which==="short")box.innerHTML=shortNotes.map((n,i)=>`<div class="qa"><h3>${i+1}. ${n[0]}</h3><small>Short-note answer</small><br><button>＋ Reveal answer</button><div class="qa-answer">${n[1]}</div></div>`).join("");
+ else if(which==="topics")box.innerHTML=topics.map((t,i)=>`<div class="qa"><h3>${i+1}. ${t.title}</h3><small>${t.sections.length} key points</small><br><button>＋ Show topic breakdown</button><div class="qa-answer"><p>${t.intro}</p><ol>${t.sections.map(s=>`<li><b>${s[0]}</b> — ${s[1]}</li>`).join("")}</ol><p><b>Memory hook:</b> ${t.hook}</p></div></div>`).join("");
+ else box.innerHTML=articleData().map(a=>`<div class="qa"><h3>${a[0]} · ${a[1]}</h3><small>Constitutional reference</small><br><button>＋ Explain this Article</button><div class="qa-answer">${a[2]}</div></div>`).join("");
+ document.querySelectorAll(".qa button").forEach(b=>b.onclick=()=>{let p=b.parentElement;p.classList.toggle("open");b.textContent=p.classList.contains("open")?"− Hide answer":"＋ Show answer"});
+}
+function articleData(){return [
 ["Article 32","Supreme Court writ jurisdiction","The Supreme Court can issue writs for enforcement of Fundamental Rights."],
-["Article 124","Supreme Court structure and appointment","The Supreme Court consists of the CJI and other judges as provided by law; judges are formally appointed by the President through the established collegium system."],
-["Article 129","Supreme Court as Court of Record","The Supreme Court can punish for contempt of itself."],
-["Article 131","Original jurisdiction of Supreme Court","Certain disputes between the Union and states, or between states, can be heard directly, subject to constitutional conditions."],
-["Article 137","Review power of Supreme Court","The Supreme Court may review its own judgments, subject to applicable legal rules."],
+["Article 124","Supreme Court composition","The Supreme Court consists of the Chief Justice of India and other judges as provided by law. Judges are formally appointed by the President through the established collegium system."],
+["Article 129","Supreme Court as Court of Record","The Supreme Court is a Court of Record and can punish for contempt of itself."],
+["Article 131","Original jurisdiction","The Court hears certain disputes between the Union and states or between states, subject to constitutional conditions."],
+["Article 137","Review power","The Supreme Court may review its own judgments, subject to applicable legal rules."],
 ["Article 142","Complete justice","The Supreme Court may pass orders necessary for doing complete justice in matters before it."],
 ["Article 143","Advisory jurisdiction","The President may refer certain questions of law or fact of public importance to the Supreme Court for an advisory opinion."],
 ["Article 153","Governor","The Governor is the constitutional head of a state."],
 ["Article 155","Appointment of Governor","The President appoints the Governor."],
-["Article 161","Governor's clemency power","The Governor may grant specified forms of clemency within the scope of state executive power."],
-["Article 163","Aid and advice","The Council of Ministers headed by the Chief Minister aids and advises the Governor, except where discretion is constitutionally permitted."],
-["Article 164","Appointment of Chief Minister","The Governor appoints the Chief Minister."],
-["Article 167","CM's communication to Governor","The Chief Minister communicates Council decisions and legislative proposals and provides constitutionally required information."],
-["Article 213","Governor's ordinance power","The Governor may promulgate ordinances when the Legislature is not in session and constitutional conditions are met."],
+["Article 161","Clemency power","The Governor may grant specified forms of clemency within the scope of state executive power."],
+["Article 163","Aid and advice","The Council of Ministers headed by the CM aids and advises the Governor, except where discretion is constitutionally permitted."],
+["Article 164","Appointment of CM","The Governor appoints the Chief Minister."],
+["Article 167","CM's communication","The CM communicates Council decisions and legislative proposals and provides constitutionally required information."],
+["Article 213","Ordinance power","The Governor may promulgate ordinances when the Legislature is not in session and constitutional conditions are met."],
 ["Article 214","High Court","Provides for a High Court for each state, subject to provisions allowing a common High Court."],
 ["Article 215","High Court as Court of Record","Every High Court is a Court of Record and may punish for contempt of itself."],
-["Article 217","Appointment of High Court judges","A High Court judge is appointed by the President after the constitutionally prescribed consultation process."],
+["Article 217","High Court judge appointment","A High Court judge is appointed by the President after the constitutionally prescribed consultation process."],
 ["Article 226","High Court writ jurisdiction","High Courts can issue writs for Fundamental Rights and other legal purposes; the scope is broader than Article 32."],
 ["Article 227","High Court supervision","High Courts supervise subordinate courts and tribunals within their territorial jurisdiction, subject to constitutional exceptions."],
-["Article 235","Control over subordinate judiciary","High Courts exercise control over district and subordinate courts."]
-];
-let reelIndex=0;
-function reelCards(){
-  return topics.flatMap((t,ti)=>t.sections.map((s,si)=>({
-    topic:t.title,tag:`TOPIC ${ti+1} · QUICK REEL ${si+1}`,question:`What does “${s[0]}” mean?`,
-    answer:s[1],
-    example:reelExample(ti,si,s[0]),
-    cue:memoryLine(t,si)
-  })));
-}
-function reelExample(ti,si,label){
-  const examples=[
-   "Imagine a state government team: the Chief Minister is the team leader who coordinates the work.",
-   "Think of two roles working with one Constitution as their rulebook: the Governor and the elected Council led by the CM.",
-   "Picture four labelled drawers: executive, legislative, financial and judicial. Put each power in its correct drawer.",
-   "Imagine a referee checking whether everyone follows the rules and whether people's rights are protected.",
-   "Think of the Supreme Court as the highest judicial forum for the kinds of matters assigned to it by the Constitution.",
-   "Imagine a state-level justice centre that can hear appeals and supervise courts below it.",
-   "Think of the Election Commission as the match referee who oversees the process and checks rule violations.",
-   "Like improving the rules of a game so it is fairer for every participant.",
-   "Imagine a race where one runner has unfair money advantages and another uses threats to scare competitors.",
-   "Imagine an eight-stop journey: registration, schedule, nominations, scrutiny, campaign, polling, counting, result."
-  ];
-  return examples[ti]||`Use this everyday picture to remember the idea of ${label.toLowerCase()}.`;
-}
-function reels(){
-  page="reels";
-  const cards=reelCards();
-  root.innerHTML=`<section class="reel-intro"><div class="kicker">SCROLL TO LEARN · 30-SECOND CONCEPTS</div><h2>Study like you scroll reels.</h2><p>One question. One clear answer. One example. Swipe up for the next idea.</p></section>
-  <div class="reel-feed" id="reelfeed">${cards.map((c,i)=>`<article class="reel-card"><div><div class="reel-meta">${c.tag} · ${i+1}/${cards.length}</div><h3>${c.question}</h3><p>Pause for a second. Can you explain it before reading?</p><div class="reel-answer"><b>Answer</b><span>${c.answer}</span></div><div class="reel-answer"><b>Everyday example</b><span>${c.example}</span></div></div><div class="reel-foot"><span>🧠 ${c.cue}</span><span>SWIPE ↑</span></div></article>`).join("")}</div>
-  <div class="reel-hint">Swipe up inside this card area to move to the next full lesson card. Each card contains the question, answer and example.</div>`;
-}
-function examHub(tab="long"){
-  page="exam";
-  root.innerHTML=`<div class="section-title"><h2>Exam preparation hub</h2><span>Based on your PDF</span></div>
-  <p style="font-size:13px;color:var(--muted)">Find the long-answer questions, short answers, topic outlines and constitutional Articles in one place. Tap a question to reveal its answer.</p>
-  <div class="exam-tabs"><button data-exam="long" class="${tab==="long"?"active":""}">Important Q&A</button><button data-exam="short" class="${tab==="short"?"active":""}">Short questions</button><button data-exam="topics" class="${tab==="topics"?"active":""}">Topics</button><button data-exam="articles" class="${tab==="articles"?"active":""}">Articles</button></div>
-  <div id="examcontent"></div>`;
-  document.querySelectorAll("[data-exam]").forEach(b=>b.onclick=()=>examHub(b.dataset.exam));
-  const box=$("#examcontent");
-  if(tab==="long"){
-    box.innerHTML=topics.map((t,i)=>`<div class="exam-block"><h3>${i+1}. ${t.title}</h3><p>Long-answer question · ${t.sections.length} key points</p><button>＋ View answer outline</button><div class="answer"><b>Introduction</b><p>${t.intro}</p><b>Points to explain</b><ul>${t.sections.map(s=>`<li><b>${s[0]}:</b> ${s[1]}</li>`).join("")}</ul><b>Conclusion</b><p>${t.summary}</p></div></div>`).join("");
-  }else if(tab==="short"){
-    box.innerHTML=shortNotes.map((n,i)=>`<div class="exam-block"><h3>${i+1}. ${n[0]}</h3><p>Short-note question</p><button>＋ Reveal answer</button><div class="answer">${n[1]}</div></div>`).join("");
-  }else if(tab==="topics"){
-    box.innerHTML=topics.map((t,i)=>`<div class="exam-block"><h3>${i+1}. ${t.title}</h3><p>${t.sections.length} points to prepare</p><button>＋ Open topic breakdown</button><div class="answer"><p>${t.intro}</p><ol>${t.sections.map(s=>`<li><b>${s[0]}</b> — ${s[1]}</li>`).join("")}</ol><p><b>Memory hook:</b> ${t.hook}</p></div></div>`).join("");
-  }else{
-    box.innerHTML=articleNotes.map(a=>`<div class="exam-block"><span class="exam-article">${a[0]}</span><h3>${a[1]}</h3><p>What to remember</p><button>＋ Explain this Article</button><div class="answer">${a[2]}</div></div>`).join("");
-  }
-  document.querySelectorAll(".exam-block button").forEach(b=>b.onclick=()=>{const p=b.parentElement;p.classList.toggle("open");b.textContent=p.classList.contains("open")?"− Hide":"＋ "+(tab==="long"?"View answer outline":tab==="short"?"Reveal answer":tab==="topics"?"Open topic breakdown":"Explain this Article")});
-}
-
+["Article 235","Subordinate judiciary","High Courts exercise control over district and subordinate courts."]
+]}
+function learn(){startLearn()}
 home();
 </script>
 </body>
