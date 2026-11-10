@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f7f4ed">
+<title>Constitution Quest | Learn one idea at a time</title>
+<style>
+:root{
+ --paper:#f7f4ed;--card:#fffdf8;--ink:#242b2a;--muted:#727b76;--line:#e7e2d7;
+ --forest:#174d43;--forest2:#23695b;--mint:#dceee5;--coral:#e77d60;--coral-pale:#fbe6de;
+ --gold:#e6b85c;--gold-pale:#fff2d6;--blue:#dfeaf4;--shadow:0 8px 28px #24352b12;
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:ui-rounded,"Avenir Next",system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.55}
+button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.app{max-width:760px;margin:auto;min-height:100dvh;padding:0 0 92px}
+header{padding:18px 18px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{display:flex;align-items:center;gap:10px}.brandmark{width:42px;height:42px;background:var(--forest);color:#fff;border-radius:14px;display:grid;place-items:center;font-size:23px;font-weight:900}
+.brand strong{display:block;font-size:15px;letter-spacing:-.3px}.brand small{display:block;color:var(--muted);font-size:11px}
+.streak{background:var(--gold-pale);color:#775319;border:1px solid #f1dfb8;border-radius:99px;padding:7px 11px;font-size:12px;font-weight:750}
+main{padding:8px 16px 22px}
+.welcome{background:var(--forest);color:#fff;border-radius:25px;padding:22px 20px 20px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.welcome:after{content:"";position:absolute;width:190px;height:190px;border:1px solid #ffffff22;border-radius:50%;right:-70px;top:-85px;box-shadow:0 0 0 24px #ffffff08,0 0 0 48px #ffffff06}
+.kicker{font-size:10px;letter-spacing:1.8px;text-transform:uppercase;font-weight:850;opacity:.75}
+.welcome h1{font-size:29px;line-height:1.13;letter-spacing:-1px;margin:10px 0 8px;max-width:420px}
+.welcome p{font-size:13px;color:#d7e8e0;margin:0;max-width:430px}
+.welcome-row{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-top:20px;position:relative;z-index:1}
+.primary{border:0;background:var(--gold);color:#382b12;border-radius:13px;padding:12px 16px;font-weight:850;font-size:13px;box-shadow:0 4px 0 #b58b3e}
+.primary:active{transform:translateY(2px);box-shadow:0 2px 0 #b58b3e}
+.hero-stamp{font-size:36px;opacity:.95}
+.section-title{display:flex;justify-content:space-between;align-items:center;margin:24px 2px 11px}
+.section-title h2{font-size:17px;margin:0;letter-spacing:-.3px}.section-title span{font-size:11px;color:var(--muted)}
+.today-card{background:var(--card);border:1px solid var(--line);border-radius:19px;padding:15px;box-shadow:var(--shadow)}
+.progressline{height:8px;background:#ece9df;border-radius:20px;overflow:hidden;margin:9px 0 7px}.progressline span{height:100%;display:block;background:var(--forest2);width:0;transition:width .35s}
+.progressmeta{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+.path{display:grid;gap:9px}
+.pathitem{display:flex;align-items:center;gap:12px;text-align:left;width:100%;border:1px solid var(--line);background:var(--card);border-radius:16px;padding:12px;box-shadow:0 3px 12px #24352b08;color:var(--ink)}
+.pathitem:active{transform:scale(.99)}.pathnum{width:37px;height:37px;flex:none;border-radius:12px;background:var(--mint);color:var(--forest);display:grid;place-items:center;font-weight:900}
+.pathcopy{min-width:0;flex:1}.pathcopy b{font-size:13px;display:block;line-height:1.25}.pathcopy small{font-size:11px;color:var(--muted)}
+.pathstatus{font-size:18px;color:var(--forest)}
+.bottomnav{position:fixed;z-index:10;bottom:0;left:0;right:0;background:#fffdf8ed;backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:8px 12px calc(8px + env(safe-area-inset-bottom));display:flex;justify-content:center}
+.bottominner{width:100%;max-width:760px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px}
+.navbtn{border:0;background:transparent;color:#818982;padding:6px 2px;border-radius:12px;font-size:10px;font-weight:700;display:grid;justify-items:center;gap:2px}
+.navbtn .ico{font-size:19px;line-height:1.2}.navbtn.active{background:var(--mint);color:var(--forest)}
+/* lesson */
+.backline{display:flex;align-items:center;justify-content:space-between;margin:4px 0 14px}
+.textbtn{border:0;background:transparent;color:var(--forest);font-weight:800;padding:7px 0;font-size:13px}
+.lessonprogress{font-size:11px;color:var(--muted)}
+.lessonhead{background:var(--forest);color:white;border-radius:23px;padding:19px;margin-bottom:13px;position:relative;overflow:hidden}
+.lessonhead .kicker{color:#cce6d8}.lessonhead h1{font-size:25px;line-height:1.17;letter-spacing:-.8px;margin:7px 0}.lessonhead p{font-size:12px;color:#d8e8e0;margin:0}
+.lessonbadge{display:inline-block;margin-top:12px;padding:5px 9px;background:#ffffff1b;border-radius:99px;font-size:10px}
+.stepdots{display:flex;gap:5px;margin:15px 0}.stepdots i{height:5px;flex:1;background:#e6e1d6;border-radius:9px}.stepdots i.on{background:var(--coral)}
+.lesson-card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--shadow);min-height:260px}
+.lesson-card .label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;font-weight:900;color:var(--forest2)}
+.lesson-card h2{font-size:21px;line-height:1.22;margin:8px 0 12px;letter-spacing:-.5px}
+.lesson-card p{font-size:14px;color:#505b55;margin:0 0 12px}
+.analogy{background:var(--gold-pale);border:1px solid #f0dfba;border-radius:15px;padding:13px;margin:13px 0;color:#574622;font-size:13px}
+.analogy b{display:block;font-size:10px;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;color:#8a6424}
+.keyline{background:var(--mint);border-radius:13px;padding:12px 13px;color:#174d43;font-size:13px;font-weight:700;margin-top:12px}
+.lesson-actions{display:flex;gap:9px;margin-top:13px}.lesson-actions button{flex:1}
+.secondary{border:1px solid var(--line);background:#fffdf8;color:var(--forest);border-radius:13px;padding:12px;font-weight:800;font-size:13px}
+.lesson-actions .primary{font-size:13px}
+.remember{background:var(--coral-pale);border-radius:17px;padding:15px;margin-top:13px;color:#704234;font-size:13px}
+.remember b{display:block;margin-bottom:4px}
+.answerbox{border:1px dashed #c8c1b2;background:#faf8f1;border-radius:14px;padding:13px;margin-top:12px}
+.answerbox button{border:0;background:transparent;color:var(--forest);font-weight:850;padding:0}
+.answertext{display:none;margin-top:9px;color:#515a54;font-size:13px}.answerbox.open .answertext{display:block}
+.quizcard{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:17px;box-shadow:var(--shadow)}
+.quizlabel{font-size:10px;letter-spacing:1.4px;color:var(--forest2);font-weight:900}
+.quizcard h2{font-size:19px;line-height:1.3;margin:9px 0 14px}
+.opt{width:100%;text-align:left;background:#fff;border:1px solid var(--line);padding:12px;border-radius:13px;margin:5px 0;color:var(--ink);font-size:13px}
+.opt.correct{border-color:#4b9b78;background:#e5f4eb}.opt.wrong{border-color:#df8068;background:#fbe8e1}
+.explain{font-size:12px;color:var(--muted);min-height:22px;margin:10px 0}
+.flash{background:var(--forest);color:white;border-radius:22px;min-height:235px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow)}
+.flash small{color:#cce6d8;letter-spacing:1.5px;font-weight:800}.flash h2{font-size:24px;line-height:1.25;margin:15px 0}.flash p{color:#d7e8e0;font-size:13px}
+.flashback{display:none;background:var(--mint);color:var(--forest);border-radius:22px;min-height:235px;padding:22px}.flashback h2{font-size:20px}.flashback p{font-size:14px}
+.gridfacts{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.fact{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}.fact b{font-size:13px;color:var(--forest);display:block}.fact span{font-size:11px;color:var(--muted)}
+.noteitem{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:8px 0;overflow:hidden}
+.noteitem button{border:0;background:transparent;padding:13px;width:100%;text-align:left;display:flex;justify-content:space-between;gap:8px;color:var(--ink);font-weight:800;font-size:13px}
+.noteanswer{display:none;padding:0 13px 13px;color:#59645e;font-size:13px}.noteitem.open .noteanswer{display:block}
+.emptyhint{padding:18px;text-align:center;color:var(--muted);font-size:13px}
+@media(min-width:650px){main{padding:14px 25px 30px}.welcome{padding:28px}.welcome h1{font-size:36px}.path{grid-template-columns:1fr 1fr}.lessonhead h1{font-size:30px}.lesson-card{padding:24px}.bottomnav{padding-bottom:10px}}
+@media(prefers-reduced-motion:no-preference){.welcome{animation:fadeup .5s ease both}.today-card,.pathitem{animation:fadeup .4s ease both}@keyframes fadeup{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}}
+
+/* swipe-to-learn reels */
+.reel-intro{background:var(--forest);color:#fff;border-radius:20px;padding:16px;margin-bottom:12px}
+.reel-intro h2{font-size:21px;line-height:1.2;margin:5px 0}.reel-intro p{font-size:12px;color:#d7e8e0;margin:0}
+.reel-feed{height:min(68dvh,680px);min-height:430px;overflow-y:auto;scroll-snap-type:y mandatory;overscroll-behavior:contain;border-radius:22px;display:block;padding-bottom:2px}
+.reel-card{scroll-snap-align:start;min-height:min(64dvh,620px);margin:0 0 10px;border-radius:22px;padding:20px;display:flex;flex-direction:column;justify-content:space-between;background:linear-gradient(155deg,#174d43,#286c5a);color:white;position:relative;overflow:hidden}
+.reel-card:nth-child(3n+2){background:linear-gradient(155deg,#a85b46,#d78a68)}
+.reel-card:nth-child(3n){background:linear-gradient(155deg,#354c78,#657fa8)}
+.reel-card:after{content:"";position:absolute;width:220px;height:220px;border:1px solid #ffffff22;border-radius:50%;right:-90px;top:-80px;box-shadow:0 0 0 25px #ffffff09,0 0 0 50px #ffffff06}
+.reel-meta{font-size:10px;letter-spacing:1.4px;font-weight:900;color:#ffffffc9;position:relative;z-index:1}
+.reel-card h3{font-size:clamp(23px,6vw,34px);line-height:1.14;letter-spacing:-.8px;margin:12px 0;position:relative;z-index:1}
+.reel-card p{font-size:14px;color:#ffffffed;position:relative;z-index:1}
+.reel-answer{background:#ffffff1c;border:1px solid #ffffff40;border-radius:15px;padding:13px;margin-top:12px;position:relative;z-index:1}
+.reel-answer b{display:block;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#fff9d9;margin-bottom:5px}
+.reel-answer span{font-size:13px;color:white}
+.reel-foot{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#ffffffd6;position:relative;z-index:1;margin-top:15px}
+.reel-hint{font-size:11px;color:var(--muted);text-align:center;padding:8px}
+.exam-tabs{display:flex;gap:7px;overflow-x:auto;padding:3px 0 9px;scrollbar-width:none}
+.exam-tabs button{white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--forest);padding:9px 12px;border-radius:99px;font-size:12px;font-weight:800}
+.exam-tabs button.active{background:var(--forest);color:white;border-color:var(--forest)}
+.exam-block{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin:9px 0}
+.exam-block h3{font-size:14px;margin:0 0 7px}.exam-block p{font-size:12px;color:var(--muted);margin:0}
+.exam-block .answer{display:none;border-top:1px solid var(--line);padding-top:10px;margin-top:10px;color:#505b55;font-size:13px}
+.exam-block.open .answer{display:block}
+.exam-block button{border:0;background:transparent;padding:0;color:var(--forest);font-weight:850;font-size:12px;margin-top:9px}
+.exam-article{display:inline-flex;align-items:center;gap:5px;background:var(--mint);color:var(--forest);border-radius:8px;padding:4px 7px;font-size:10px;font-weight:900;margin:2px 4px 2px 0}
+@media(max-width:390px){.navbtn{font-size:9px}.navbtn .ico{font-size:17px}.bottominner{gap:1px}.reel-feed{height:62dvh}.reel-card{min-height:58dvh;padding:17px}}
+
+</style>
+</head>
+<body>
+<div class="app">
+<header><div class="brand"><div class="brandmark">§</div><div><strong>CONSTITUTION QUEST</strong><small>Semester II · Learn with a plan</small></div></div><div class="streak">✦ YOUR STUDY SPACE</div></header>
+<main id="appmain"></main>
+</div>
+<nav class="bottomnav"><div class="bottominner">
+<button class="navbtn active" data-tab="home"><span class="ico">⌂</span>Home</button>
+<button class="navbtn" data-tab="reels"><span class="ico">▣</span>Reels</button>
+<button class="navbtn" data-tab="learn"><span class="ico">◉</span>Learn</button>
+<button class="navbtn" data-tab="exam"><span class="ico">✎</span>Exam</button>
+<button class="navbtn" data-tab="revise"><span class="ico">✧</span>Revise</button>
+</div></nav>
+<script>
+const topics = [
+{title:"Chief Minister: appointment, qualifications & powers",icon:"🏛️",intro:"The Chief Minister is the real executive head of the state government. The CM leads the Council of Ministers and is responsible for state administration.",hook:"Think: CM = Captain of the state team. The Governor appoints the captain; the captain coordinates the ministers and departments.",sections:[
+["Appointment","The Governor appoints the Chief Minister under Article 164. Normally, the leader of the majority party in the Legislative Assembly is appointed. In a hung assembly, the Governor appoints the person most likely to demonstrate majority support. The CM must retain the confidence of the Legislative Assembly."],
+["Qualifications","The person must be an Indian citizen and qualified for membership of the State Legislature. Minimum age is 25 for the Legislative Assembly or 30 for the Legislative Council. If not a member when appointed, the person must become a member within six consecutive months."],
+["Executive powers","Supervises state administration and government departments."],
+["Selection of Ministers","Recommends ministers to the Governor and allocates portfolios."],
+["Legislative powers","Leads government business in the Legislature and coordinates legislative programmes."],
+["Financial powers","Guides state financial policies and budget priorities through the Council of Ministers."],
+["Advisory role & coordination","Advises the Governor on important matters, coordinates departments and represents the state in dealings with the Union Government."]],
+summary:"The Chief Minister is the central figure in state administration and plays a vital role in policy implementation, governance and democratic accountability.",
+quiz:[["Under which Article does the Governor appoint the Chief Minister?",["Article 155","Article 164","Article 214","Article 324"],1,"164 → appointment of the Chief Minister."],["A person appointed CM but not yet a legislator must become a member within:",["Three months","Six consecutive months","One year","Two years"],1,"The document specifies six consecutive months."]]},
+{title:"Relationship between Governor & Chief Minister",icon:"🤝",intro:"The Governor is the constitutional head of the state, while the Chief Minister is the head of the elected government. Their relationship is mainly governed by Articles 163 and 164.",hook:"Remember the pair: Governor = constitutional head; CM = elected-government head. The key is cooperation, advice and information.",sections:[
+["Appointment","The Governor appoints the Chief Minister, normally choosing the leader who commands majority support in the Legislative Assembly."],
+["Appointment of ministers","The Governor appoints other ministers on the advice of the Chief Minister."],
+["Aid and advice — Article 163","The Council of Ministers headed by the CM aids and advises the Governor, except where the Constitution permits discretion."],
+["Information sharing — Article 167","The CM communicates Council of Ministers decisions and legislative proposals to the Governor and provides information when constitutionally required."],
+["Legislative functions","The Governor summons and prorogues the State Legislature and may dissolve the Legislative Assembly as constitutionally permitted. These functions are generally exercised on ministerial advice."],
+["Bills and assent","The Governor may give assent, withhold assent, return a non-Money Bill for reconsideration, or reserve a bill for the President, subject to constitutional provisions."],
+["Constitutional responsibility","The Governor must act within constitutional limits, while the CM is politically accountable to the Legislative Assembly."]],
+summary:"A healthy relationship requires constitutional cooperation, respect for democratic mandates and adherence to federal principles.",
+quiz:[["Which Article requires the CM to communicate certain decisions and information to the Governor?",["Article 155","Article 163","Article 167","Article 226"],2,"Article 167 is the information link between CM and Governor."],["Who appoints other ministers on the CM's advice?",["President","Governor","Speaker","Chief Justice"],1,"The Governor appoints ministers on the CM's advice."]]},
+{title:"Executive, legislative, financial & judicial powers of Governor",icon:"⚖️",intro:"The Governor is the constitutional head of a state under Article 153. The Governor's powers operate within the Constitution and ordinarily on the aid and advice of the Council of Ministers.",hook:"Four power buckets: E-L-F-J → Executive appoints, Legislative makes the House work, Financial handles budget steps, Judicial gives limited clemency.",sections:[
+["Executive powers","Appoints the Chief Minister; appoints other ministers on the CM's advice; appoints the Advocate General under Article 165; appoints the State Election Commissioner under Article 243K, subject to constitutional provisions; performs constitutional functions relating to state administration."],
+["Legislative powers","Summons and prorogues the State Legislature; may dissolve the Legislative Assembly as constitutionally permitted; addresses the Legislature and sends messages; acts on bills; promulgates ordinances under Article 213 when the Legislature is not in session and conditions are satisfied."],
+["Financial powers","Ensures the annual financial statement/state budget is laid before the Legislature. A Money Bill can be introduced in the Legislative Assembly only on the Governor's recommendation. Recommendations are required for certain financial proposals."],
+["Judicial powers","Under Article 161, may grant pardons, reprieves, respites or remissions, or suspend, remit or commute sentences within the scope of state executive power. The document notes limits regarding pardons in death-sentence cases. The Governor appoints district judges in consultation with the High Court under Article 233."]],
+summary:"The Governor performs executive, legislative, financial and limited clemency functions, always within constitutional principles and judicial interpretation.",
+quiz:[["Which Article deals with the Governor's ordinance power?",["Article 161","Article 213","Article 233","Article 324"],1,"Article 213 = Governor's ordinance power."],["The Governor's clemency power is mentioned under:",["Article 143","Article 161","Article 165","Article 226"],1,"Article 161 is the key memory link for clemency."]]},
+{title:"Judiciary's contribution to strengthening democracy",icon:"⚖️",intro:"The judiciary protects the Constitution, safeguards Fundamental Rights and ensures public authorities act within the law.",hook:"Picture the judiciary as democracy's safety system: RIGHTS, REVIEW, RULE OF LAW, ELECTIONS, PIL and ACCOUNTABILITY.",sections:[
+["Protection of Fundamental Rights","The Supreme Court and High Courts protect rights under Articles 32 and 226. They can issue writs to remedy violations of rights and legal duties."],
+["Judicial Review","Courts review laws and executive actions and invalidate those that violate the Constitution."],
+["Independence of Judiciary","Constitutional safeguards help judges decide cases without improper interference from the executive or legislature."],
+["Rule of Law","Everyone, including public officials and government institutions, is subject to the law."],
+["Free and Fair Elections","Courts adjudicate election disputes and review unlawful government actions affecting elections and the constitutionality of election-related laws."],
+["Public Interest Litigation (PIL)","PIL enables courts to consider issues affecting disadvantaged groups, environmental protection, human rights and public accountability."],
+["Basic Structure Doctrine","In Kesavananda Bharati v. State of Kerala (1973), the Supreme Court developed the Basic Structure Doctrine, limiting Parliament's power to amend the Constitution in a way that destroys its basic structure."],
+["Accountability and transparency","Judicial scrutiny helps prevent arbitrary administrative action and reinforces constitutional governance."],
+["Challenges","Delays, large backlogs, high litigation costs, shortages of judges and infrastructure, and concerns about access to justice and accountability."]],
+summary:"The judiciary strengthens democracy by protecting rights, maintaining constitutional supremacy and holding public authorities accountable. Timely and accessible justice is essential.",
+quiz:[["Which case is associated with the Basic Structure Doctrine in the document?",["Maneka Gandhi","Kesavananda Bharati","Golaknath only","Minerva Mills only"],1,"Kesavananda Bharati v. State of Kerala (1973)."],["PIL can bring attention to:",["Only tax disputes","Disadvantaged groups and public issues","Only election schedules","Only ministerial appointments"],1,"PIL supports issues such as disadvantaged groups, environment and human rights."]]},
+{title:"Supreme Court: structure, composition & powers",icon:"🏛️",intro:"The Supreme Court of India is the highest judicial authority. It was established on 28 January 1950 and functions under Part V, Chapter IV of the Constitution.",hook:"Use the jurisdiction code O-W-A-A + J-C-R-C: Original, Writ, Appellate, Advisory; Judicial Review, Court of Record, Review, Complete Justice.",sections:[
+["Structure and composition","Consists of the Chief Justice of India and other judges as provided by law. The document lists sanctioned strength as 34 judges including the CJI. Judges are formally appointed by the President under Article 124 through the established collegium system."],
+["Tenure and removal","A Supreme Court judge retires at 65. Removal is only through the constitutionally prescribed parliamentary process on grounds of proved misbehaviour or incapacity."],
+["Original jurisdiction — Article 131","Hears certain disputes between the Union and states or between states, subject to constitutional conditions."],
+["Writ jurisdiction — Article 32","Issues writs for enforcement of Fundamental Rights."],
+["Appellate jurisdiction — Articles 132–136","Hears appeals in constitutional, civil and criminal matters, including special leave under Article 136."],
+["Advisory jurisdiction — Article 143","The President may refer certain questions of law or fact of public importance for an advisory opinion."],
+["Judicial Review","Examines the constitutionality of laws and government actions."],
+["Court of Record — Article 129","A Court of Record with power to punish for contempt of itself."],
+["Review power — Article 137","May review its own judgments, subject to applicable legal rules."],
+["Complete Justice — Article 142","May pass decrees or orders necessary for doing complete justice in matters before it."]],
+summary:"The Supreme Court protects the Constitution, safeguards Fundamental Rights, resolves important disputes and ensures rule of law throughout India.",
+quiz:[["Which Article is associated with the Supreme Court's writ jurisdiction?",["Article 32","Article 131","Article 143","Article 226"],0,"Article 32 = Supreme Court writ jurisdiction."],["At what age does a Supreme Court judge retire, according to the document?",["60","62","65","68"],2,"Supreme Court = 65; High Court = 62."]]},
+{title:"Role of High Courts in administration of justice",icon:"🏢",intro:"High Courts are the highest courts at the state level. Article 214 provides for a High Court for each state, though a common High Court may serve two or more states or territories.",hook:"High Court = state-level justice hub. Remember Articles: 214 court, 226 writs, 227 supervision, 235 subordinate judiciary, 215 Court of Record.",sections:[
+["Original jurisdiction","Hear certain cases directly, depending on constitutional provisions and applicable laws."],
+["Appellate jurisdiction","Hear appeals against judgments of subordinate courts in civil and criminal cases as permitted by law."],
+["Writ jurisdiction — Article 226","Issue writs for Fundamental Rights and other legal purposes. The document notes this is broader than Article 32, which concerns Fundamental Rights."],
+["Supervisory jurisdiction — Article 227","Supervise subordinate courts and tribunals within territorial jurisdiction, subject to constitutional exceptions."],
+["Judicial Review","Examine constitutionality of state laws and executive actions."],
+["Protection of Fundamental Rights","Protect citizens against unlawful administrative actions and violations of constitutional rights."],
+["Control over subordinate judiciary — Article 235","Exercise control over district and subordinate courts, including important aspects of judicial administration."],
+["Court of Record — Article 215","Every High Court is a Court of Record and can punish for contempt of itself."],
+["Importance","Make justice more accessible, correct errors of subordinate courts, protect liberty and ensure state authorities follow the law."]],
+summary:"High Courts maintain rule of law, protect rights and ensure effective administration of justice within their jurisdictions.",
+quiz:[["Which Article gives High Courts writ jurisdiction?",["Article 32","Article 214","Article 226","Article 324"],2,"226 = High Court writs."],["Which Article concerns High Court control over subordinate judiciary?",["Article 215","Article 227","Article 235","Article 243K"],2,"235 = control over subordinate judiciary."]]},
+{title:"Election Commission: free & fair elections",icon:"🗳️",intro:"The Election Commission of India is an independent constitutional body under Article 324. It supervises, directs and controls elections to Parliament, State Legislatures, and the offices of President and Vice-President.",hook:"ECI's job is to make the election journey fair: rolls → schedule → parties → code → spending → polling → EVM/VVPAT → complaints → awareness.",sections:[
+["Electoral rolls","Supervises electoral registration and works to ensure eligible citizens can vote."],
+["Election schedule","Announces election schedules and coordinates elections."],
+["Political parties","Registers political parties under Section 29A of the Representation of the People Act, 1951, and determines recognition and symbols under applicable rules."],
+["Model Code of Conduct","Enforces the Code during elections and monitors parties and candidates."],
+["Election expenditure","Monitors candidate expenditure and acts within legal authority against violations."],
+["Conduct of polling","Supervises polling arrangements, election staff and security measures."],
+["EVM and VVPAT","Administers their use according to established procedures."],
+["Complaints","Investigates or refers complaints to appropriate authorities and acts within its powers."],
+["Voter awareness — SVEEP","Systematic Voters' Education and Electoral Participation promotes voter education and participation."],
+["Challenges","Money power and inducements, misinformation and paid political content, criminalisation, voter intimidation and hate speech, and misuse of official machinery."]],
+summary:"The Election Commission is essential to free and fair elections. Its effectiveness depends on independence, impartial enforcement, transparency and citizen participation.",
+quiz:[["The Election Commission is established under:",["Article 164","Article 214","Article 324","Article 352"],2,"Article 324 = Election Commission."],["SVEEP is related to:",["Judicial appointments","Voter education and participation","State budgets","Court appeals"],1,"SVEEP promotes voter education and participation."]]},
+{title:"Importance of Electoral Reforms",icon:"🧭",intro:"Electoral reforms are changes in electoral laws, procedures and institutions designed to make elections free, fair, transparent and inclusive.",hook:"Reform checklist: MONEY, CRIME, TRANSPARENCY, MALPRACTICE, PARTICIPATION, ECI, PARTY DEMOCRACY, CAMPAIGNS, TECHNOLOGY.",sections:[
+["Control money power","Improve expenditure monitoring, financial disclosure and transparency in political funding."],
+["Reduce criminalisation","Stronger disclosure, timely trials and enforcement of applicable disqualification laws help voters make informed choices."],
+["Ensure transparency","Clear reporting of campaign finances and candidate information improves accountability."],
+["Prevent malpractices","Measures against bribery, voter intimidation, impersonation and illegal inducements protect electoral integrity."],
+["Improve voter participation","Voter awareness, accessible polling stations and inclusive registration encourage participation."],
+["Strengthen Election Commission","Adequate institutional capacity, impartial enforcement and transparent procedures support independent election management."],
+["Internal party democracy","Transparent candidate selection and democratic decision-making strengthen political parties."],
+["Regulate campaign practices","Fair campaign rules and effective Model Code enforcement create a more level playing field."],
+["Improve electoral technology","Secure and auditable voting systems, transparent counting and verification build public confidence."],
+["Implementation challenges","Resistance from political interests, tracing campaign funding, delayed investigation/prosecution, misinformation and unequal campaign resources."]],
+summary:"Electoral reforms strengthen democratic accountability, public trust and representative government. Continuous reforms and impartial implementation are essential.",
+quiz:[["Which reform helps voters make informed choices about candidates?",["Hide candidate information","Stronger disclosure requirements","Stop voter awareness","Remove expenditure monitoring"],1,"Disclosure helps voters assess candidate information."],["Secure and auditable voting systems are part of:",["Electoral technology reform","Judicial appointments","Ministerial selection","State executive power"],0,"Technology improvements can build confidence."]]},
+{title:"Money power & criminalisation of politics",icon:"💸",intro:"Money power and criminalisation can distort electoral competition, influence voter choices and weaken public trust in representative institutions.",hook:"Two threats: MONEY buys unfair advantage; CRIMINAL NETWORKS create fear and influence. Keep the legal caution clear: allegation ≠ guilt.",sections:[
+["Money power: meaning","Use of financial resources to influence electoral outcomes."],
+["Excessive campaign spending","Wealthier candidates may gain advantages over candidates with fewer resources."],
+["Voter inducements","Cash, gifts and other illegal benefits may be offered to influence voters."],
+["Undisclosed funding & paid publicity","Opaque political finance makes accountability difficult; unreported publicity can distort public debate."],
+["Unequal competition","Financially powerful candidates may dominate media coverage and campaign activities."],
+["Criminalisation: meaning","Increasing participation or influence of individuals facing serious criminal allegations or convicted of criminal offences in political processes."],
+["Criminal candidates & intimidation","Candidates facing serious charges may contest subject to applicable law; criminal networks may threaten voters or opponents."],
+["Weak trust & administrative influence","Links between political power and criminal activity damage credibility; networks may seek influence over contracts, policing and public resources."],
+["Delayed justice","Long trials may leave cases unresolved for years."],
+["Important legal distinction","An allegation or pending criminal case does not establish guilt. Disqualification depends on applicable legal provisions, including rules concerning convictions."],
+["Measures","Enforce expenditure limits; disclose assets, liabilities and criminal cases as required; ensure timely trials; act against bribery and intimidation; improve funding transparency; monitor through competent authorities; promote voter education and responsible media."]],
+summary:"Money power and criminalisation undermine political equality and democratic accountability. Transparent funding, impartial law enforcement, timely justice and informed voting are necessary.",
+quiz:[["Does a pending criminal allegation automatically establish guilt?",["Yes","No"],1,"The source explicitly says an allegation or pending case does not establish guilt."],["Which is a measure against money power?",["Undisclosed funding","Transparent political funding","Voter inducements","Unreported publicity"],1,"Transparency in political funding improves accountability."]]},
+{title:"Electoral process: voter registration to results",icon:"📊",intro:"The electoral process is the legal and administrative sequence through which citizens elect representatives. The Election Commission supervises Parliament and State Legislature elections under Article 324.",hook:"Memorise the 8-step route: REGISTER → SCHEDULE → NOMINATE → SCRUTINISE → CAMPAIGN → POLL → COUNT → DECLARE.",sections:[
+["1. Voter registration","Eligible Indian citizens aged 18 or above may register in the electoral roll for their ordinary place of residence, subject to legal requirements."],
+["2. Announcement of schedule","The Election Commission announces election dates, nomination deadlines, scrutiny, withdrawal, polling and counting schedules."],
+["3. Filing nominations","Candidates submit nomination papers to the Returning Officer within the prescribed period and meet legal requirements."],
+["4. Scrutiny and withdrawal","The Returning Officer scrutinises nomination papers. Eligible candidates may withdraw within the prescribed period; the final contesting-candidate list is published."],
+["5. Election campaign","Candidates and parties explain policies and seek support, following election laws and the Model Code of Conduct."],
+["6. Polling day","Voters' identity and eligibility are checked. Votes are cast using the authorised system, generally EVM with VVPAT in parliamentary and state assembly elections."],
+["7. Counting votes","Election officials count votes under prescribed procedures, including required verification and reconciliation."],
+["8. Declaration of results","In a standard single-member constituency election, the Returning Officer declares the candidate with the highest valid vote total elected. The result is formally recorded and communicated."],
+["Importance","Enables choice of representatives, peaceful transfer of power, participation and accountability, legal resolution of disputes and democratic legitimacy."]],
+summary:"The electoral process is the foundation of representative democracy. Fair registration, transparent campaigning, impartial polling, accurate counting and lawful declaration protect the people's mandate.",
+quiz:[["Who scrutinises nomination papers?",["Governor","Returning Officer","Chief Minister","President"],1,"The Returning Officer scrutinises nominations."],["What is the correct final stage?",["Campaign","Counting","Declaration of results","Registration"],2,"The eight-stage process ends with declaration of results."]]}
+];
+const shortNotes=[
+["State Government","Government administering a particular Indian state. Includes Governor, Chief Minister, Council of Ministers and State Legislature; responsible for law and order, public health, education, agriculture and state development."],
+["Two powers of Chief Minister","(1) Leads the state government and supervises administration. (2) Recommends ministers for appointment by the Governor and allocates portfolios."],
+["Council of Ministers","Group of ministers headed by the CM who assist and advise the Governor; collectively responsible to the State Legislative Assembly."],
+["Governor","Constitutional head of a state, appointed by the President under Article 155. Normally acts on aid and advice of the Council of Ministers, except certain constitutional discretion."],
+["Judiciary","Branch interpreting laws, settling disputes, protecting Fundamental Rights and delivering justice; includes Supreme Court, High Courts and subordinate courts."],
+["Judicial Review","Power of courts to examine laws and government actions and declare them unconstitutional if they violate the Constitution."],
+["Two writs","Habeas Corpus protects against unlawful detention. Mandamus directs a public authority to perform a legal duty."],
+["High Court judge: appointment & tenure","Appointed by the President under Article 217 after the constitutionally prescribed consultation process, operating through the collegium system. Holds office until age 62. Removal follows the prescribed parliamentary process for proved misbehaviour or incapacity."],
+["Universal Adult Franchise","Every Indian citizen aged 18 or above, not otherwise disqualified, has the right to vote without discrimination based on caste, religion, gender, wealth or education."],
+["Political Party","Organised group sharing political ideas/objectives and seeking political power through elections to form or influence government. Examples in the document: BJP, INC and TDP."],
+["Electoral Reforms","Changes to improve fairness, transparency, efficiency and credibility of elections, including action against corruption, criminalisation and misuse of money power."],
+["Model Code of Conduct","ECI guidelines for parties, candidates and governments to ensure free and fair elections. Comes into effect when the election schedule is announced and applies according to ECI directions and relevant law."]
+];
+let page="home",topicIndex=0,partIndex=0,done=new Set(),quizPos=0,quizAnswered=false,flashPos=0,flashBack=false;
+const root=document.querySelector("#appmain");
+const $=s=>document.querySelector(s);
+function persist(){localStorage.setItem("cqDone",JSON.stringify([...done]))}
+try{done=new Set(JSON.parse(localStorage.getItem("cqDone")||"[]"))}catch(e){}
+function setTab(t){page=t;document.querySelectorAll(".navbtn").forEach(b=>b.classList.toggle("active",b.dataset.tab===t));if(t==="home")home();if(t==="learn")lessonIntro();if(t==="reels")reels();if(t==="exam")examHub("long");if(t==="revise")revision()}
+document.querySelectorAll(".navbtn").forEach(b=>b.onclick=()=>setTab(b.dataset.tab));
+function progress(){return Math.round(done.size/topics.length*100)}
+function home(){page="home";let next=topics.findIndex((t,i)=>!done.has(i));if(next<0)next=0;
+root.innerHTML=`<section class="welcome"><div class="kicker">A LITTLE EVERY DAY ADDS UP</div><h1>Understand it.<br>Remember it.<br>Write it in the exam.</h1><p>Don't try to memorise all 12 pages at once. We'll turn each topic into small, easy lessons.</p><div class="welcome-row"><button class="primary" id="start">Start today's lesson →</button><div class="hero-stamp">📖</div></div></section>
+<div class="section-title"><h2>Your progress</h2><span>${done.size}/10 topics</span></div>
+<div class="today-card"><div class="progressmeta"><b>${progress()}% of long answers covered</b><span>Keep going</span></div><div class="progressline"><span style="width:${progress()}%"></span></div><div class="progressmeta"><span>Each topic takes a few short steps</span><span>🎯</span></div></div>
+<div class="section-title"><h2>Your learning path</h2><span>Tap any topic</span></div><div class="path">${topics.map((t,i)=>`<button class="pathitem" data-open="${i}"><span class="pathnum">${done.has(i)?"✓":String(i+1).padStart(2,"0")}</span><span class="pathcopy"><b>${t.title}</b><small>${t.sections.length} small ideas · Learn + test</small></span><span class="pathstatus">${done.has(i)?"✓":"›"}</span></button>`).join("")}</div>`;
+$("#start").onclick=()=>openTopic(next);document.querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>openTopic(+b.dataset.open))}
+function openTopic(i){topicIndex=i;partIndex=0;quizPos=0;quizAnswered=false;page="learn";document.querySelectorAll(".navbtn").forEach(b=>b.classList.toggle("active",b.dataset.tab==="learn"));lesson()}
+function lessonIntro(){openTopic(topics.findIndex((t,i)=>!done.has(i))<0?0:topics.findIndex((t,i)=>!done.has(i)))}
+function lesson(){let t=topics[topicIndex],s=t.sections[partIndex],pct=Math.round((partIndex/t.sections.length)*100);
+root.innerHTML=`<div class="backline"><button class="textbtn" id="tohome">← My study path</button><span class="lessonprogress">TOPIC ${topicIndex+1} OF 10</span></div>
+<section class="lessonhead"><div class="kicker">YOUR MINI LESSON</div><h1>${t.title}</h1><p>${t.intro}</p><span class="lessonbadge">⏱ 5–8 minute learning session</span></section>
+<div class="stepdots">${t.sections.map((x,i)=>`<i class="${i<=partIndex?"on":""}"></i>`).join("")}</div>
+<section class="lesson-card"><div class="label">STEP ${partIndex+1} · ${t.sections.length} IDEAS</div><h2>${s[0]}</h2><p>${s[1]}</p>
+<div class="analogy"><b>💡 Make it simple</b>${analogy(t,partIndex)}</div>
+<div class="keyline">🔑 Remember this: ${memoryLine(t,partIndex)}</div>
+<div class="answerbox" id="writebox"><button id="showcheck">＋ Check what you should remember</button><div class="answertext">${s[0]} — ${s[1]}</div></div>
+</section>
+<div class="lesson-actions"><button class="secondary" id="prev" ${partIndex===0?"disabled":""}>← Back</button><button class="primary" id="next">${partIndex===t.sections.length-1?"Finish lesson ✓":"I understand · Next →"}</button></div>
+<div class="remember"><b>🧠 How to study this screen</b>1. Read the heading and explanation slowly.<br>2. Understand the simple example.<br>3. Look away and say the key point in your own words.<br>4. Open “Check what you should remember” to compare.</div>`;
+$("#tohome").onclick=home;$("#prev").onclick=()=>{if(partIndex>0){partIndex--;lesson()}};$("#next").onclick=()=>{if(partIndex<t.sections.length-1){partIndex++;lesson()}else{finishLesson()}};$("#showcheck").onclick=()=>$("#writebox").classList.toggle("open")}
+function analogy(t,i){let title=t.title.toLowerCase();if(title.includes("chief minister"))return ["Think of a team captain. The captain leads the team, assigns roles and makes sure everyone works towards the same goal.","Think of the CM and Governor as two constitutional roles: the elected leader advises and shares information with the constitutional head.","Group the Governor's work into four drawers: administration, law-making, money matters and limited mercy powers.","The court system is like a safety net: it protects rights, checks power and helps people seek justice.","The Supreme Court is the final national-level court for the kinds of cases listed in the Constitution.","A High Court is the top court for its state or shared territory arrangement.","The Election Commission is the referee that helps keep the election process fair.","Electoral reforms are upgrades to the rules of a game so every player gets a fair chance.","Money power tilts the playing field; intimidation makes voters afraid. Both weaken a fair contest.","An election is a journey with checkpoints. Each stage must happen in order."][topicIndex]||"Connect this idea to the main purpose of the topic.";
+return title.includes("governor")?"Imagine a state has a constitutional chairperson and an elected team leader. Their roles are different, but they must work within the same rulebook.":title.includes("judiciary")||title.includes("high court")||title.includes("supreme court")?"Imagine a referee who checks whether everyone, even powerful people, follows the rulebook. Courts protect rights and check unlawful actions.":title.includes("election")||title.includes("money power")?"Think of an election as a fair sports match. The rules, referee, players and scorekeeping must all be fair.":"Break the idea into its purpose, the people involved and what happens next."}
+function memoryLine(t,i){let s=t.sections[i][0];return s.split("—")[0].split(":")[0]+" = "+(t.sections[i][1].split(".")[0])}
+function finishLesson(){done.add(topicIndex);persist();root.innerHTML=`<section class="welcome"><div class="kicker">MINI LESSON COMPLETE</div><h1>Nice work. One topic clearer. 🎉</h1><p>You have completed the learning steps for ${topics[topicIndex].title}. Now test what stayed in your memory.</p><div class="welcome-row"><button class="primary" id="test">Take the 2-question check →</button><div class="hero-stamp">🌱</div></div></section><div class="section-title"><h2>What you just did</h2></div><div class="today-card"><b>✓ Read the explanation</b><p style="font-size:13px;color:var(--muted)">✓ Connected it to a simple example<br>✓ Practised recalling the key point<br>✓ Finished ${done.size} of 10 topics</p></div>`;$("#test").onclick=()=>{quizPos=0;quizAnswered=false;quizPage()}}
+function quizPage(){let qs=topics[topicIndex].quiz,q=qs[quizPos%qs.length];root.innerHTML=`<div class="backline"><button class="textbtn" id="backlesson">← Topic complete</button><span class="lessonprogress">QUICK MEMORY CHECK</span></div><section class="quizcard"><div class="quizlabel">QUESTION ${quizPos+1} OF ${qs.length}</div><h2>${q[0]}</h2><div id="opts">${q[1].map((o,i)=>`<button class="opt" data-o="${i}">${String.fromCharCode(65+i)} · ${o}</button>`).join("")}</div><div class="explain" id="explain">Choose the answer you remember.</div><button class="primary" style="width:100%" id="continue" disabled>${quizPos===qs.length-1?"Back to learning path":"Next question →"}</button></section>`;$("#backlesson").onclick=home;document.querySelectorAll("[data-o]").forEach(b=>b.onclick=()=>{if(quizAnswered)return;quizAnswered=true;let n=+b.dataset.o,ok=n===q[2];b.classList.add(ok?"correct":"wrong");if(!ok)document.querySelector(`[data-o="${q[2]}"]`).classList.add("correct");$("#explain").textContent=(ok?"Correct! ":"Remember: ")+q[3];$("#continue").disabled=false});$("#continue").onclick=()=>{if(quizPos<qs.length-1){quizPos++;quizAnswered=false;quizPage()}else{root.innerHTML=`<section class="welcome"><div class="kicker">RECALL PRACTISED</div><h1>That's how learning becomes memory.</h1><p>Return to this topic later and try recalling the points without looking.</p><div class="welcome-row"><button class="primary" id="homeagain">Back to my path →</button><span class="hero-stamp">✨</span></div></section>`;$("#homeagain").onclick=home}}}
+function practice(){root.innerHTML=`<div class="section-title"><h2>Practice, don't just reread.</h2><span>Small recall wins</span></div><p style="color:var(--muted);font-size:13px">Use these after learning a topic. Try answering in your head before opening each answer.</p><div class="section-title"><h2>Short notes</h2><span>12 quick answers</span></div>${shortNotes.map((n,i)=>`<div class="noteitem"><button>${i+1}. ${n[0]} <span>＋</span></button><div class="noteanswer">${n[1]}</div></div>`).join("")}<div class="section-title"><h2>Topic memory check</h2><span>Pick a topic</span></div><div class="path">${topics.map((t,i)=>`<button class="pathitem" data-q="${i}"><span class="pathnum">${i+1}</span><span class="pathcopy"><b>${t.title}</b><small>2 quick questions</small></span><span class="pathstatus">›</span></button>`).join("")}</div>`;document.querySelectorAll(".noteitem button").forEach(b=>b.onclick=()=>b.parentElement.classList.toggle("open"));document.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{topicIndex=+b.dataset.q;quizPos=0;quizAnswered=false;quizPage()})}
+function revision(){root.innerHTML=`<div class="section-title"><h2>Quick revision map</h2><span>Before the exam</span></div><p style="font-size:13px;color:var(--muted)">Revise the big idea first. Then recall the detail from memory.</p><div class="section-title"><h2>10 long-answer topics</h2></div>${topics.map((t,i)=>`<div class="noteitem"><button>${String(i+1).padStart(2,"0")} · ${t.title}<span>＋</span></button><div class="noteanswer">${t.hook}<br><br><b>Conclusion:</b> ${t.summary}</div></div>`).join("")}<div class="section-title"><h2>Important Articles</h2><span>From your notes</span></div><div class="gridfacts">${[["153","Governor — state head"],["155","Appointment of Governor"],["161","Clemency power"],["163","Aid and advice"],["164","Appointment of CM"],["167","CM communicates with Governor"],["213","Governor's ordinances"],["217","High Court judge appointment"],["214","High Court"],["226","High Court writs"],["227","High Court supervision"],["235","Subordinate judiciary control"],["124","Supreme Court"],["129","Supreme Court Court of Record"],["131","Original jurisdiction"],["137","Review power"],["142","Complete justice"],["143","Advisory jurisdiction"],["32","Supreme Court writs"],["324","Election Commission"]].map(a=>`<div class="fact"><b>Article ${a[0]}</b><span>${a[1]}</span></div>`).join("")}</div>`;document.querySelectorAll(".noteitem button").forEach(b=>b.onclick=()=>b.parentElement.classList.toggle("open"))}
+
+const articleNotes=[
+["Article 32","Supreme Court writ jurisdiction","The Supreme Court can issue writs for enforcement of Fundamental Rights."],
+["Article 124","Supreme Court structure and appointment","The Supreme Court consists of the CJI and other judges as provided by law; judges are formally appointed by the President through the established collegium system."],
+["Article 129","Supreme Court as Court of Record","The Supreme Court can punish for contempt of itself."],
+["Article 131","Original jurisdiction of Supreme Court","Certain disputes between the Union and states, or between states, can be heard directly, subject to constitutional conditions."],
+["Article 137","Review power of Supreme Court","The Supreme Court may review its own judgments, subject to applicable legal rules."],
+["Article 142","Complete justice","The Supreme Court may pass orders necessary for doing complete justice in matters before it."],
+["Article 143","Advisory jurisdiction","The President may refer certain questions of law or fact of public importance to the Supreme Court for an advisory opinion."],
+["Article 153","Governor","The Governor is the constitutional head of a state."],
+["Article 155","Appointment of Governor","The President appoints the Governor."],
+["Article 161","Governor's clemency power","The Governor may grant specified forms of clemency within the scope of state executive power."],
+["Article 163","Aid and advice","The Council of Ministers headed by the Chief Minister aids and advises the Governor, except where discretion is constitutionally permitted."],
+["Article 164","Appointment of Chief Minister","The Governor appoints the Chief Minister."],
+["Article 167","CM's communication to Governor","The Chief Minister communicates Council decisions and legislative proposals and provides constitutionally required information."],
+["Article 213","Governor's ordinance power","The Governor may promulgate ordinances when the Legislature is not in session and constitutional conditions are met."],
+["Article 214","High Court","Provides for a High Court for each state, subject to provisions allowing a common High Court."],
+["Article 215","High Court as Court of Record","Every High Court is a Court of Record and may punish for contempt of itself."],
+["Article 217","Appointment of High Court judges","A High Court judge is appointed by the President after the constitutionally prescribed consultation process."],
+["Article 226","High Court writ jurisdiction","High Courts can issue writs for Fundamental Rights and other legal purposes; the scope is broader than Article 32."],
+["Article 227","High Court supervision","High Courts supervise subordinate courts and tribunals within their territorial jurisdiction, subject to constitutional exceptions."],
+["Article 235","Control over subordinate judiciary","High Courts exercise control over district and subordinate courts."]
+];
+let reelIndex=0;
+function reelCards(){
+  return topics.flatMap((t,ti)=>t.sections.map((s,si)=>({
+    topic:t.title,tag:`TOPIC ${ti+1} · QUICK REEL ${si+1}`,question:`What does “${s[0]}” mean?`,
+    answer:s[1],
+    example:reelExample(ti,si,s[0]),
+    cue:memoryLine(t,si)
+  })));
+}
+function reelExample(ti,si,label){
+  const examples=[
+   "Imagine a state government team: the Chief Minister is the team leader who coordinates the work.",
+   "Think of two roles working with one Constitution as their rulebook: the Governor and the elected Council led by the CM.",
+   "Picture four labelled drawers: executive, legislative, financial and judicial. Put each power in its correct drawer.",
+   "Imagine a referee checking whether everyone follows the rules and whether people's rights are protected.",
+   "Think of the Supreme Court as the highest judicial forum for the kinds of matters assigned to it by the Constitution.",
+   "Imagine a state-level justice centre that can hear appeals and supervise courts below it.",
+   "Think of the Election Commission as the match referee who oversees the process and checks rule violations.",
+   "Like improving the rules of a game so it is fairer for every participant.",
+   "Imagine a race where one runner has unfair money advantages and another uses threats to scare competitors.",
+   "Imagine an eight-stop journey: registration, schedule, nominations, scrutiny, campaign, polling, counting, result."
+  ];
+  return examples[ti]||`Use this everyday picture to remember the idea of ${label.toLowerCase()}.`;
+}
+function reels(){
+  page="reels";
+  const cards=reelCards();
+  root.innerHTML=`<section class="reel-intro"><div class="kicker">SCROLL TO LEARN · 30-SECOND CONCEPTS</div><h2>Study like you scroll reels.</h2><p>One question. One clear answer. One example. Swipe up for the next idea.</p></section>
+  <div class="reel-feed" id="reelfeed">${cards.map((c,i)=>`<article class="reel-card"><div><div class="reel-meta">${c.tag} · ${i+1}/${cards.length}</div><h3>${c.question}</h3><p>Pause for a second. Can you explain it before reading?</p><div class="reel-answer"><b>Answer</b><span>${c.answer}</span></div><div class="reel-answer"><b>Everyday example</b><span>${c.example}</span></div></div><div class="reel-foot"><span>🧠 ${c.cue}</span><span>SWIPE ↑</span></div></article>`).join("")}</div>
+  <div class="reel-hint">Swipe up inside this card area to move to the next full lesson card. Each card contains the question, answer and example.</div>`;
+}
+function examHub(tab="long"){
+  page="exam";
+  root.innerHTML=`<div class="section-title"><h2>Exam preparation hub</h2><span>Based on your PDF</span></div>
+  <p style="font-size:13px;color:var(--muted)">Find the long-answer questions, short answers, topic outlines and constitutional Articles in one place. Tap a question to reveal its answer.</p>
+  <div class="exam-tabs"><button data-exam="long" class="${tab==="long"?"active":""}">Important Q&A</button><button data-exam="short" class="${tab==="short"?"active":""}">Short questions</button><button data-exam="topics" class="${tab==="topics"?"active":""}">Topics</button><button data-exam="articles" class="${tab==="articles"?"active":""}">Articles</button></div>
+  <div id="examcontent"></div>`;
+  document.querySelectorAll("[data-exam]").forEach(b=>b.onclick=()=>examHub(b.dataset.exam));
+  const box=$("#examcontent");
+  if(tab==="long"){
+    box.innerHTML=topics.map((t,i)=>`<div class="exam-block"><h3>${i+1}. ${t.title}</h3><p>Long-answer question · ${t.sections.length} key points</p><button>＋ View answer outline</button><div class="answer"><b>Introduction</b><p>${t.intro}</p><b>Points to explain</b><ul>${t.sections.map(s=>`<li><b>${s[0]}:</b> ${s[1]}</li>`).join("")}</ul><b>Conclusion</b><p>${t.summary}</p></div></div>`).join("");
+  }else if(tab==="short"){
+    box.innerHTML=shortNotes.map((n,i)=>`<div class="exam-block"><h3>${i+1}. ${n[0]}</h3><p>Short-note question</p><button>＋ Reveal answer</button><div class="answer">${n[1]}</div></div>`).join("");
+  }else if(tab==="topics"){
+    box.innerHTML=topics.map((t,i)=>`<div class="exam-block"><h3>${i+1}. ${t.title}</h3><p>${t.sections.length} points to prepare</p><button>＋ Open topic breakdown</button><div class="answer"><p>${t.intro}</p><ol>${t.sections.map(s=>`<li><b>${s[0]}</b> — ${s[1]}</li>`).join("")}</ol><p><b>Memory hook:</b> ${t.hook}</p></div></div>`).join("");
+  }else{
+    box.innerHTML=articleNotes.map(a=>`<div class="exam-block"><span class="exam-article">${a[0]}</span><h3>${a[1]}</h3><p>What to remember</p><button>＋ Explain this Article</button><div class="answer">${a[2]}</div></div>`).join("");
+  }
+  document.querySelectorAll(".exam-block button").forEach(b=>b.onclick=()=>{const p=b.parentElement;p.classList.toggle("open");b.textContent=p.classList.contains("open")?"− Hide":"＋ "+(tab==="long"?"View answer outline":tab==="short"?"Reveal answer":tab==="topics"?"Open topic breakdown":"Explain this Article")});
+}
+
+home();
+</script>
+</body>
+</html>
